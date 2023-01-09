@@ -1,5 +1,8 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
+
+import '../../data/errors/errors.dart';
 
 class HttpAdapter {
   final Client client;
@@ -25,6 +28,7 @@ class HttpAdapter {
     switch (response.statusCode) {
       case 200: return response.body.isEmpty ? null : jsonDecode(response.body);
       case 204: return null;
+      case 400: throw HttpError.badRequest;
     }
   }
 }

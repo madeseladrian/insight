@@ -4,6 +4,7 @@ import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:insight/data/errors/errors.dart';
 import 'package:insight/infra/http/http.dart';
 
 import '../mocks/mocks.dart';
@@ -49,6 +50,13 @@ void main() {
       client.mockPost(204); 
       final response = await sut.request(url: url, method: 'post');
       expect(response, null);
+    });
+
+    // Error tests body is not necessary, because it is the same as without body
+    test('8 - Should return BadRequestError if post returns 400 with body', () async {
+      client.mockPost(400, body: ''); 
+      final future = sut.request(url: url, method: 'post');
+      expect(future, throwsA(HttpError.badRequest));
     });
   });  
 }
