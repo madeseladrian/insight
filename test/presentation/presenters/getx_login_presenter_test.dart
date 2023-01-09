@@ -2,26 +2,41 @@ import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
-import 'package:insight/ui/helpers/helpers.dart';
+import 'package:insight/domain/entities/entities.dart';
+import 'package:insight/domain/params/params.dart';
 
 import 'package:insight/presentation/helpers/helpers.dart';
 import 'package:insight/presentation/presenters/presenters.dart';
 
+import 'package:insight/ui/helpers/helpers.dart';
+
+import '../../domain/mocks/mocks.dart';
 import '../mocks/mocks.dart';
  
 void main() {
   late String email;
   late String password;
+  late AccountEntity accountEntity;
+  late AuthenticationSpy authentication;
   late ValidationSpy validation;
   late GetxLoginPresenter sut;
 
   setUp(() {
     email = faker.internet.email();
     password = faker.internet.password();
+    accountEntity = EntityFactory.makeAccount();
+    authentication = AuthenticationSpy();
+    authentication.mockAuthentication(accountEntity);
     validation = ValidationSpy();
     sut = GetxLoginPresenter(
+      authentication: authentication,
       validation: validation
     );
+  });
+
+  setUpAll(() {
+    registerFallbackValue(EntityFactory.makeAccount());
+    registerFallbackValue(ParamsFactory.makeAuthentication());
   });
 
   test('1 - Should call Validation with correct email', () async {
@@ -98,5 +113,16 @@ void main() {
     sut.validateEmail(email);
     await Future.delayed(Duration.zero);
     sut.validatePassword(password);
+  });
+
+  test('12 - Should call Authentication with correct values', () async {
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    
+    await sut.auth();
+
+    verify(() => authentication.auth(
+      AuthenticationParams(email: email, password: password)
+    )).called(1);
   });
 }
