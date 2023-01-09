@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
 import 'package:insight/ui/helpers/helpers.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -181,5 +182,15 @@ void main() {
     await tester.pump();
 
     expect(find.text('Algo errado aconteceu. Tente novamente em breve.'), findsOneWidget);
+  });
+
+  testWidgets('18 - Should change page', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNavigateTo('any_route');
+    await tester.pumpAndSettle();
+
+    expect(Get.currentRoute, 'any_route');
+    expect(find.text('fake page'), findsOneWidget);
   });
 }
