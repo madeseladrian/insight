@@ -9,12 +9,14 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   final emailErrorController = StreamController<UIError?>();
   final passwordErrorController = StreamController<UIError?>();
   final isFormValidController = StreamController<bool>();
+  final isLoadingController = StreamController<bool>();
 
   LoginPresenterSpy() {
     when(() => auth()).thenAnswer((_) async => _);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
     when(() => isFormValidStream).thenAnswer((_) => isFormValidController.stream);
+    when(() => isLoadingStream).thenAnswer((_) => isLoadingController.stream);
   }
 
   void emitEmailError(UIError error) => emailErrorController.add(error);
@@ -23,11 +25,13 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   void emitPasswordValid() => passwordErrorController.add(null);
   void emitFormError() => isFormValidController.add(false);
   void emitFormValid() => isFormValidController.add(true);
+  void emitLoading([bool show = true]) => isLoadingController.add(show);
 
   @override
   void dispose() {
     emailErrorController.close();
     passwordErrorController.close();
     isFormValidController.close();
+    isLoadingController.close();
   }
 }

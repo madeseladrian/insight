@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../mixins/mixins.dart';
 import 'login.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatelessWidget with LoadingManager {
   final LoginPresenter presenter;
 
   const LoginPage({Key? key, required this.presenter}) : super(key: key);
@@ -16,6 +17,8 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Builder(
         builder: (context) {
+          handleLoading(context, presenter.isLoadingStream);
+
           return ConstrainedBox(
             constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
             child: Center(

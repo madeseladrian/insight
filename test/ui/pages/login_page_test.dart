@@ -144,4 +144,13 @@ void main() {
 
     verify(() => presenter.auth()).called(1);
   });
+
+  testWidgets('14 - Should present loading', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitLoading();
+    await tester.pump();
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
 }
