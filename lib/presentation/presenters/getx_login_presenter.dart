@@ -78,6 +78,9 @@ with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
         default: mainError = UIError.unexpected;
       }
     }
-    
+  }
+
+  void support() {
+    navigateTo = '/support';
   }
 }
