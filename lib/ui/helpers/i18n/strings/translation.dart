@@ -15,4 +15,5 @@ abstract class Translation {
   String get nameApp;
   String get password;
   String get reload;
+  String get support;
 }

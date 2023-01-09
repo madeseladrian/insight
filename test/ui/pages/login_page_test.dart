@@ -201,4 +201,16 @@ void main() {
     await tester.pump();
     expect(Get.currentRoute, '/login');
   });
+
+  testWidgets('20 - Should call support on click text button in header', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.pump();
+    final button = find.byKey(const Key('support header'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.support()).called(1);
+  });
 }

@@ -18,6 +18,7 @@ class EnUs implements Translation {
   String get nameApp => 'Insight';
   String get password => 'Password';
   String get reload => 'Reload';
+  String get support => 'support';
 }
 
   

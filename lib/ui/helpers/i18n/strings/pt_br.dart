@@ -18,4 +18,5 @@ class PtBr implements Translation {
   String get nameApp => 'Insight';
   String get password => 'Senha';
   String get reload => 'Recarregar';
+  String get support => 'suporte';
 }
