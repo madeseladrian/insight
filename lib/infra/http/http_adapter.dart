@@ -15,12 +15,17 @@ class HttpAdapter {
       "content-type": "application/x-www-form-urlencoded"
     });
     final encoding = Encoding.getByName('utf-8');
-    final response = await client.post(
-      Uri.parse(url), 
-      headers: defaultHeaders,
-      encoding: encoding,
-      body: body
-    );
+    var response = Response('', 500);
+    try {
+      response = await client.post(
+        Uri.parse(url), 
+        headers: defaultHeaders,
+        encoding: encoding,
+        body: body
+      );
+    } catch (error) {
+      throw HttpError.serverError;
+    }
     return _handleResponse(response);
   }
 
