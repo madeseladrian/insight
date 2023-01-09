@@ -57,6 +57,12 @@ class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, 
                           routeText: R.strings.recoverPassword, 
                           onTap: presenter.recoverPassword
                         ),
+                        HelpLogin(
+                          key: const Key('support body'),
+                          text: R.strings.needHelp, 
+                          routeText: R.strings.clickHere, 
+                          onTap: presenter.support
+                        )
                       ],
                     ),
                     const SizedBox(height: 24),

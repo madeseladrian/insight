@@ -8,17 +8,13 @@ class PtBr implements Translation {
   String get msgRequiredField => 'Campo obrigatório';
   String get msgUnexpectedError => 'Algo errado aconteceu. Tente novamente em breve.';
 
-  String get addAccount => 'Criar conta';
-  String get close => 'Fechar';
-  String get confirmPassword => 'Confirmar senha';
+  String get clickHere => 'Clique aqui';
   String get email => 'Email';
   String get enter => 'Entrar';
   String get forgotPassword => 'Esqueceu sua senha?';
-  String get login => 'Login';
-  String get name => 'Nome';
-  String get nameApp => 'Insight';
+  String get login => 'login';
+  String get needHelp => 'Precisa de ajuda?';
   String get password => 'Senha';
-  String get recoverPassword => 'Recover password';
-  String get reload => 'Recarregar';
+  String get recoverPassword => 'Recuperar senha';
   String get support => 'suporte';
 }
