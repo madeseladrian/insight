@@ -153,4 +153,15 @@ void main() {
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
+
+  testWidgets('15 - Should hide loading', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitLoading();
+    await tester.pump();
+    presenter.emitLoading(false);
+    await tester.pump();
+
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
 }
