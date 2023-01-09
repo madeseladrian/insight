@@ -40,9 +40,10 @@ class LoginPage extends StatelessWidget {
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
-                            labelText: 'Senha',
+                            labelText: 'Senha'
                           ),
-                          keyboardType: TextInputType.emailAddress,
+                          obscureText: true,
+                          onChanged: presenter.validatePassword
                         ),
                         const Padding(
                           padding: EdgeInsets.only(bottom: 8.0, top: 36.0),
