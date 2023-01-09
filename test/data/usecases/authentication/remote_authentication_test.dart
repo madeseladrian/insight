@@ -34,4 +34,9 @@ void main() {
       body: {"username": params.email, "password": params.password}
     ));
   });
+
+  test('4 - Should return an AccountEntity if HttpClient returns 200', () async {
+    final accountEntity = await sut.auth(params);
+    expect(accountEntity.token, apiResult['access_token']);
+  });
 }

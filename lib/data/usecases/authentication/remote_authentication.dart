@@ -1,8 +1,8 @@
-import 'package:insight/data/params/remote_authentication_params.dart';
-
 import '../../../domain/params/params.dart';
 
 import '../../contracts/contracts.dart';
+import '../../models/models.dart';
+import '../../params/params.dart';
 
 class RemoteAuthentication {
   final String url;
@@ -12,6 +12,7 @@ class RemoteAuthentication {
 
   Future auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
-    await httpClient.request(url: url, method: 'post', body: body);
+    final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
+    return RemoteAccountModel.fromJson(httpResponse).toEntity();
   }
 }
