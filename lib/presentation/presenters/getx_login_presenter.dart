@@ -11,7 +11,7 @@ import '../helpers/helpers.dart';
 import '../mixins/mixins.dart';
 
 class GetxLoginPresenter extends GetxController 
-with FormManager, LoadingManager, UIErrorManager  {
+with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
   final Authentication authentication;
   final Validation validation;
 
@@ -69,6 +69,7 @@ with FormManager, LoadingManager, UIErrorManager  {
         email: _email, 
         password: _password
       ));
+      navigateTo = '/initial';
     } on DomainError catch (error) {
       isLoading = false;
       switch (error) {
