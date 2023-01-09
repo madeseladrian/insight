@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:insight/ui/pages/login/components/email_input.dart';
 
-import '../../helpers/helpers.dart';
 import 'login.dart';
 
 class LoginPage extends StatelessWidget {
@@ -35,16 +33,10 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const EmailInput(),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: R.strings.password
-                          ),
-                          obscureText: true,
-                          onChanged: presenter.validatePassword
-                        ),
-                        const Padding(
+                      children: const [
+                        EmailInput(),
+                        PasswordInput(),
+                        Padding(
                           padding: EdgeInsets.only(bottom: 8.0, top: 36.0),
                           child: ElevatedButton(
                             onPressed: null,
