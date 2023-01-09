@@ -1,17 +1,19 @@
 import 'package:get/get.dart';
-import 'package:insight/domain/errors/domain_error.dart';
 
+import '../../domain/errors/domain_error.dart';
 import '../../domain/features/features.dart';
 import '../../domain/params/params.dart';
 
 import '../../ui/helpers/helpers.dart';
+import '../../ui/pages/login/login.dart';
 
 import '../contracts/contracts.dart';
 import '../helpers/helpers.dart';
 import '../mixins/mixins.dart';
 
 class GetxLoginPresenter extends GetxController 
-with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
+with FormManager, LoadingManager, NavigationManager, UIErrorManager 
+implements LoginPresenter {
   final Authentication authentication;
   final Validation validation;
 
@@ -21,7 +23,9 @@ with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
   final _emailError = Rx<UIError?>(null);
   final _passwordError = Rx<UIError?>(null);
 
+  @override
   Stream<UIError?> get emailErrorStream => _emailError.stream;
+  @override
   Stream<UIError?> get passwordErrorStream => _passwordError.stream;
 
   GetxLoginPresenter({
@@ -49,18 +53,21 @@ with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
       && _password != null;
   }
 
+  @override
   void validateEmail(String email) {
     _email = email;
     _emailError.value = _validateField(field: 'email');
     _validateForm();
   }
 
+  @override
   void validatePassword(String password) {
     _password = password;
     _passwordError.value = _validateField(field: 'password');
     _validateForm();
   }
 
+  @override
   Future<void> auth() async {
     try {
       mainError = null;
@@ -80,10 +87,12 @@ with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
     }
   }
 
+  @override
   void support() {
     navigateTo = '/support';
   }
 
+  @override
   void recoverPassword() {
     navigateTo = '/recoverPassword';
   }
