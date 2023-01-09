@@ -83,4 +83,8 @@ with FormManager, LoadingManager, NavigationManager, UIErrorManager  {
   void support() {
     navigateTo = '/support';
   }
+
+  void recoverPassword() {
+    navigateTo = '/recoverPassword';
+  }
 }
