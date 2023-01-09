@@ -13,10 +13,12 @@ class EnUs implements Translation {
   String get confirmPassword => 'Confirm password';
   String get email => 'Email';
   String get enter => 'Enter';
+  String get forgotPassword => 'Forgot password?';
   String get login => 'Login';
   String get name => 'Name';
   String get nameApp => 'Insight';
   String get password => 'Password';
+  String get recoverPassword => 'Recover password';
   String get reload => 'Reload';
   String get support => 'support';
 }

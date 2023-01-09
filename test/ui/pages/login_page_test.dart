@@ -213,4 +213,16 @@ void main() {
 
     verify(() => presenter.support()).called(1);
   });
+
+  testWidgets('21 - Should call recoverPassword on click', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.pump();
+    final button = find.byKey(const Key('recover password'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.recoverPassword()).called(1);
+  });
 }

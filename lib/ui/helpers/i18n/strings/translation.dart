@@ -10,10 +10,12 @@ abstract class Translation {
   String get close;
   String get email;
   String get enter;
+  String get forgotPassword;
   String get login;
   String get name;
   String get nameApp;
   String get password;
+  String get recoverPassword;
   String get reload;
   String get support;
 }

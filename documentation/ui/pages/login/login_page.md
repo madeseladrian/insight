@@ -11,8 +11,8 @@
 8. ✅ Remover mensagem de erro se o email for válido
 9. ✅ Mostrar mensagem de erro se a senha for vazia
 10.✅ Remover mensagem de erro se a senha for válida
-11.✅ Habilitar o botão de fazer login se todos os campos forem válidos
-12.✅ Desabilitar o botão de fazer login se algum campo for inválido
+11.✅ Desabilitar o botão de fazer login se algum campo for inválido
+12.✅ Habilitar o botão de fazer login se todos os campos forem válidos
 13.✅ Chamar o método de autenticar
 14.✅ Exibir loading no início da ação de login
 15.✅ Esconder loading no fim da ação de login
@@ -21,5 +21,5 @@
 18.✅ Garantir que para qualquer rota selecionada, muda-se de página
 19.✅ Ficar na mesma página, caso a rota esteja errada
 20.✅ Chamar o método de suporte ao clicar no link in header
-21.❌ Chamar o método de suporte ao clicar no link in body
-22.❌ Chamar o método de recuperar senha ao clicar no link
+21.✅ Chamar o método de recuperar senha ao clicar no link
+22.❌ Chamar o método de suporte ao clicar no link in body

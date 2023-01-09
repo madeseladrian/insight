@@ -13,10 +13,12 @@ class PtBr implements Translation {
   String get confirmPassword => 'Confirmar senha';
   String get email => 'Email';
   String get enter => 'Entrar';
+  String get forgotPassword => 'Esqueceu sua senha?';
   String get login => 'Login';
   String get name => 'Nome';
   String get nameApp => 'Insight';
   String get password => 'Senha';
+  String get recoverPassword => 'Recover password';
   String get reload => 'Recarregar';
   String get support => 'suporte';
 }

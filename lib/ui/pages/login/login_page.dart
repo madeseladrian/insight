@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../helpers/helpers.dart';
 import '../../mixins/mixins.dart';
 import 'login.dart';
 
@@ -47,6 +48,16 @@ class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, 
                           LoginButton()
                         ],
                       ),
+                    ),
+                    Column(
+                      children: [
+                        HelpLogin(
+                          key: const Key('recover password'),
+                          text: R.strings.forgotPassword, 
+                          routeText: R.strings.recoverPassword, 
+                          onTap: presenter.recoverPassword
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                   ],
