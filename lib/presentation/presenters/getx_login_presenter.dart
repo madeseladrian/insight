@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 
 import '../../ui/helpers/helpers.dart';
 import '../contracts/contracts.dart';
+import '../helpers/helpers.dart';
+import '../mixins/mixins.dart';
 
-class GetxLoginPresenter extends GetxController {
+class GetxLoginPresenter extends GetxController with FormManager {
   final Validation validation;
 
   String? _email;
@@ -19,17 +21,35 @@ class GetxLoginPresenter extends GetxController {
     required this.validation
   });
 
-  void _validateField({required String field}) {
+  UIError? _validateField({required String field}) {
     final formData = {
       'email': _email,
       'password': _password
     };
-    validation.validate(field: field, input: formData);
+    final error = validation.validate(field: field, input: formData);
+    switch (error) {
+      case ValidationError.invalidField: return UIError.invalidField;
+      case ValidationError.requiredField: return UIError.requiredField;
+      default: return null;
+    }
+  }
+  
+  void _validateForm() {
+    isFormValid = _emailError.value == null
+      && _passwordError.value == null 
+      && _email != null
+      && _password != null;
   }
 
   void validateEmail(String email) {
     _email = email;
-    _validateField(field: 'email');
+    _emailError.value = _validateField(field: 'email');
+    _validateForm();
   }
-  
+
+  void validatePassword(String password) {
+    _password = password;
+    _passwordError.value = _validateField(field: 'password');
+    _validateForm();
+  }
 }
