@@ -13,5 +13,5 @@ class HttpClientSpy extends Mock implements HttpClient {
   void mockRequest(dynamic data) => 
     mockRequestCall().thenAnswer((_) async => data); 
 
-  void mockError(HttpError error) => mockRequestCall().thenThrow(error);
+  void mockRequestError(HttpError error) => mockRequestCall().thenThrow(error);
 }
