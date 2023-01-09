@@ -43,7 +43,6 @@ class LoginPage extends StatelessWidget {
                             labelText: 'Senha',
                           ),
                           keyboardType: TextInputType.emailAddress,
-                          onChanged: presenter.validateEmail,
                         ),
                         const Padding(
                           padding: EdgeInsets.only(bottom: 8.0, top: 36.0),
