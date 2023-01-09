@@ -33,5 +33,10 @@ void main() {
         body: {"any_key":"any_value"}
       ));
     });
+
+    test('5 - Should return data if post returns 200', () async { 
+      final response = await sut.request(url: url, method: 'post');
+      expect(response, {"any_key":"any_value"});
+    });
   });  
 }

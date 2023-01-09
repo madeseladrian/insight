@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 
-
 class HttpAdapter {
   final Client client;
   
@@ -14,11 +13,12 @@ class HttpAdapter {
   }) async {
     final headers = {"content-type": "application/x-www-form-urlencoded"};
     final encoding = Encoding.getByName('utf-8');
-    await client.post(
+    final response = await client.post(
       Uri.parse(url), 
       headers: headers,
       encoding: encoding,
       body: body
     );
+    return jsonDecode(response.body);
   }
 }
