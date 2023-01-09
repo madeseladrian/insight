@@ -48,9 +48,21 @@ void main() {
     final future = sut.auth(params);
     expect(future, throwsA(DomainError.unexpected));
   });
+
+  test('6 - Should throw InvalidCredentialsError if HttpClient returns 401', () async {
+    httpClient.mockRequestError(HttpError.unauthorized);
+    final future = sut.auth(params);
+    expect(future, throwsA(DomainError.invalidCredentials));
+  });
   
-  test('6 - Should throw UnexpectedError if HttpClient returns 404', () async {
+  test('7 - Should throw UnexpectedError if HttpClient returns 404', () async {
     httpClient.mockRequestError(HttpError.notFound);
+    final future = sut.auth(params);
+    expect(future, throwsA(DomainError.unexpected));
+  });
+
+  test('8 - Should throw UnexpectedError if HttpClient returns 500', () async {
+    httpClient.mockRequestError(HttpError.serverError);
     final future = sut.auth(params);
     expect(future, throwsA(DomainError.unexpected));
   });

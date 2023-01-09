@@ -1,4 +1,6 @@
 enum DomainError {
-  validationError,
+  accessDenied,
+  emailInUse,
+  invalidCredentials,
   unexpected
 }
