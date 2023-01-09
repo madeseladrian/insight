@@ -21,6 +21,7 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   void emitPasswordError(UIError error) => passwordErrorController.add(error);
   void emitPasswordValid() => passwordErrorController.add(null);
   void emitFormError() => isFormValidController.add(false);
+  void emitFormValid() => isFormValidController.add(true);
   
   @override
   void dispose() {
