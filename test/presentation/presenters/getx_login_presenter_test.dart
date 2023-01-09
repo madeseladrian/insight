@@ -91,4 +91,12 @@ void main() {
     await Future.delayed(Duration.zero);
     sut.validatePassword(password);
   });
+
+  test('11 - Should enable form button if all fields are valid', () async {
+    expectLater(sut.isFormValidStream, emitsInOrder([false, true]));
+
+    sut.validateEmail(email);
+    await Future.delayed(Duration.zero);
+    sut.validatePassword(password);
+  });
 }
