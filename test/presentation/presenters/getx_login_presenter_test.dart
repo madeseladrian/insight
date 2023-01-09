@@ -125,4 +125,11 @@ void main() {
       AuthenticationParams(email: email, password: password)
     )).called(1);
   });
+
+  test('13 - Should emit correct events on Authentication success', () async {
+    expectLater(sut.isLoadingStream, emits(true));
+    expectLater(sut.mainErrorStream, emits(null));
+
+    await sut.auth();
+  });
 }
