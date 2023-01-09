@@ -164,4 +164,13 @@ void main() {
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
+
+  testWidgets('16 - Should present error message if authentication fails', (WidgetTester tester) async {
+    await loadPage(tester);
+    
+    presenter.emitMainError(UIError.invalidCredentials);
+    await tester.pump();
+
+    expect(find.text('Credenciais inválidas.'), findsOneWidget);
+  });
 }

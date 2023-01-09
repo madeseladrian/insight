@@ -8,6 +8,7 @@ import 'package:insight/ui/pages/pages.dart';
 class LoginPresenterSpy extends Mock implements LoginPresenter {
   final emailErrorController = StreamController<UIError?>();
   final passwordErrorController = StreamController<UIError?>();
+  final mainErrorController = StreamController<UIError?>();
   final isFormValidController = StreamController<bool>();
   final isLoadingController = StreamController<bool>();
 
@@ -15,9 +16,10 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
     when(() => auth()).thenAnswer((_) async => _);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
+    when(() => mainErrorStream).thenAnswer((_) => mainErrorController.stream);
     when(() => isFormValidStream).thenAnswer((_) => isFormValidController.stream);
     when(() => isLoadingStream).thenAnswer((_) => isLoadingController.stream);
-  }
+  } 
 
   void emitEmailError(UIError error) => emailErrorController.add(error);
   void emitEmailValid() => emailErrorController.add(null);
@@ -26,6 +28,7 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   void emitFormError() => isFormValidController.add(false);
   void emitFormValid() => isFormValidController.add(true);
   void emitLoading([bool show = true]) => isLoadingController.add(show);
+  void emitMainError(UIError error) => mainErrorController.add(error);
 
   @override
   void dispose() {

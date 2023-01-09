@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../mixins/mixins.dart';
 import 'login.dart';
 
-class LoginPage extends StatelessWidget with LoadingManager {
+class LoginPage extends StatelessWidget with LoadingManager, UIErrorManager {
   final LoginPresenter presenter;
 
   const LoginPage({Key? key, required this.presenter}) : super(key: key);
@@ -18,6 +18,7 @@ class LoginPage extends StatelessWidget with LoadingManager {
       body: Builder(
         builder: (context) {
           handleLoading(context, presenter.isLoadingStream);
+          handleMainError(context, presenter.mainErrorStream);
 
           return ConstrainedBox(
             constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
