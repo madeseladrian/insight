@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:insight/ui/helpers/helpers.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:insight/ui/pages/pages.dart';
@@ -58,5 +59,14 @@ void main() {
     final password = faker.internet.password();
     await tester.enterText(find.bySemanticsLabel('Senha'), password);
     verify(() => presenter.validatePassword(password));
+  });
+
+  testWidgets('6 - Should present error if email is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitEmailError(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text('Campo inválido'), findsOneWidget);
   });
 }

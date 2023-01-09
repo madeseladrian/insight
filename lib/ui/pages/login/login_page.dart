@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:insight/ui/pages/login/components/email_input.dart';
 
+import '../../helpers/helpers.dart';
 import 'login.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,6 +12,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {    
+    Get.put(presenter);
+    
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Builder(
@@ -31,16 +36,10 @@ class LoginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        const EmailInput(),
                         TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          onChanged: presenter.validateEmail,
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Senha'
+                          decoration: InputDecoration(
+                            labelText: R.strings.password
                           ),
                           obscureText: true,
                           onChanged: presenter.validatePassword
