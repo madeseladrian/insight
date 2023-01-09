@@ -11,6 +11,7 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   final isFormValidController = StreamController<bool>();
 
   LoginPresenterSpy() {
+    when(() => auth()).thenAnswer((_) async => _);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
     when(() => isFormValidStream).thenAnswer((_) => isFormValidController.stream);
@@ -22,7 +23,7 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   void emitPasswordValid() => passwordErrorController.add(null);
   void emitFormError() => isFormValidController.add(false);
   void emitFormValid() => isFormValidController.add(true);
-  
+
   @override
   void dispose() {
     emailErrorController.close();
