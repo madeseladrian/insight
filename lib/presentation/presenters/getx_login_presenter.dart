@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:insight/domain/errors/domain_error.dart';
 
 import '../../domain/features/features.dart';
 import '../../domain/params/params.dart';
@@ -61,11 +62,21 @@ with FormManager, LoadingManager, UIErrorManager  {
   }
 
   Future<void> auth() async {
-    mainError = null;
-    isLoading = true;
-    await authentication.auth(AuthenticationParams(
-      email: _email, 
-      password: _password
-    ));
+    try {
+      mainError = null;
+      isLoading = true;
+      await authentication.auth(AuthenticationParams(
+        email: _email, 
+        password: _password
+      ));
+    } on DomainError catch (error) {
+      isLoading = false;
+      switch (error) {
+        case DomainError.invalidCredentials:
+          mainError = UIError.invalidCredentials; break;        
+        default: mainError = UIError.unexpected;
+      }
+    }
+    
   }
 }

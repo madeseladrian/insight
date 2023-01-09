@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:insight/domain/errors/errors.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -129,6 +130,15 @@ void main() {
   test('13 - Should emit correct events on Authentication success', () async {
     expectLater(sut.isLoadingStream, emits(true));
     expectLater(sut.mainErrorStream, emits(null));
+
+    await sut.auth();
+  });
+
+  test('14 - Should emit correct events on InvalidCredentialsError', () async {
+    authentication.mockAuthenticationError(DomainError.invalidCredentials);
+    
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.invalidCredentials]));
 
     await sut.auth();
   });
