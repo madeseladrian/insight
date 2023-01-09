@@ -102,4 +102,11 @@ void main() {
       expect(future, throwsA(HttpError.serverError));
     });
   });  
+
+  group('shared', () {
+    test('* - Should throw ServerError if invalid method is provided', () {
+      final future = sut.request(url: url, method: 'invalid_method');
+      expect(() => future, throwsA(HttpError.serverError));
+    });
+  });
 }
