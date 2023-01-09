@@ -36,13 +36,7 @@ class LoginPage extends StatelessWidget {
                       children: const [
                         EmailInput(),
                         PasswordInput(),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 8.0, top: 36.0),
-                          child: ElevatedButton(
-                            onPressed: null,
-                            child: Text('Enter')
-                          ),
-                        )
+                        LoginButton()
                       ],
                     ),
                   ),
