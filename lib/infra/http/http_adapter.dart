@@ -2,17 +2,19 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import '../../data/contracts/http/http.dart';
 import '../../data/errors/errors.dart';
 
-class HttpAdapter {
+class HttpAdapter implements HttpClient {
   final Client client;
   
   HttpAdapter({required this.client});
 
+  @override
   Future request({required String url, required String method, Map? body, Map? headers
   }) async {
     final defaultHeaders = headers?.cast<String, String>() ?? {}..addAll({
-      "content-type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/x-www-form-urlencoded"
     });
     final encoding = Encoding.getByName('utf-8');
     var response = Response('', 500);
