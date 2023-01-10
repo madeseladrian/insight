@@ -1,4 +1,5 @@
 import '../../../domain/entities/entities.dart';
+import '../../../domain/errors/errors.dart';
 import '../../../domain/features/features.dart';
 
 import '../../contracts/contracts.dart';
@@ -10,9 +11,13 @@ class LocalSaveCurrentAccount implements SaveCurrentAccount {
 
   @override
   Future<void> save({required AccountEntity accountEntity}) async {
-    await saveSecureCacheStorage.save(
-      key: 'token',
-      value: accountEntity.token
-    );
+    try {
+      await saveSecureCacheStorage.save(
+        key: 'token',
+        value: accountEntity.token
+      );
+    } catch (error) {
+      throw DomainError.unexpected;
+    }
   }
 }

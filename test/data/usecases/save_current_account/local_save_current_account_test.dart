@@ -3,6 +3,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import 'package:insight/domain/entities/entities.dart';
+import 'package:insight/domain/errors/errors.dart';
+
 import 'package:insight/data/usecases/usecases.dart';
 
 import '../../mocks/mocks.dart';
@@ -23,5 +25,11 @@ void main() {
     verify(() => secureCacheStorage.save(
       key: 'token', value: accountEntity.token
     ));
+  });
+
+  test('2 - Should throw UnexpectedError if SecureCacheStorage throws', () async {
+    secureCacheStorage.mockSaveError();
+    final future = sut.save(accountEntity: accountEntity);
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
