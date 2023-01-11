@@ -4,6 +4,7 @@ import '../../../domain/features/features.dart';
 import '../../../domain/params/params.dart';
 
 import '../../contracts/contracts.dart';
+import '../../errors/errors.dart';
 import '../../models/models.dart';
 import '../../params/params.dart';
 
@@ -20,7 +21,9 @@ class RemoteAddAccount implements AddAccount {
       final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
       return RemoteAccountModel.fromJson(httpResponse).toEntity();
     } catch (error) {
-      throw DomainError.unexpected;
+      throw error == HttpError.forbidden
+        ? DomainError.emailInUse
+        : DomainError.unexpected;
     }
   }
 }

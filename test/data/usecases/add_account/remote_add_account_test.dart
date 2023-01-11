@@ -56,7 +56,13 @@ void main() {
     expect(future, throwsA(DomainError.unexpected));
   });
 
-  test('6 - Should throw UnexpectedError if HttpClient returns 404', () async {
+  test('6 - Should throw InvalidCredentialsError if HttpClient returns 403', () async {
+    httpClient.mockRequestError(HttpError.forbidden);
+    final future = sut.add(params: params);
+    expect(future, throwsA(DomainError.emailInUse));
+  });
+
+  test('7 - Should throw UnexpectedError if HttpClient returns 404', () async {
     httpClient.mockRequestError(HttpError.notFound);
     final future = sut.add(params: params);
     expect(future, throwsA(DomainError.unexpected));
