@@ -21,7 +21,7 @@ void main() {
       password: faker.internet.password(),
       passwordConfirmation: faker.internet.password()
     );
-    apiResult = {"accessToken": faker.guid.guid()};
+    apiResult = {"access_token": faker.guid.guid()};
     url = faker.internet.httpUrl();
     httpClient = HttpClientSpy();
     httpClient.mockRequest(apiResult);
@@ -29,7 +29,7 @@ void main() {
   });
  
   test('1,2 - Should call HttpClient with correct values', () async {
-    await sut.add(params);
+    await sut.add(params: params);
     verify(() => httpClient.request(
       url: url,
       method: 'post',
@@ -40,5 +40,10 @@ void main() {
         "passwordConfirmation": params.passwordConfirmation                            
       }
     ));
+  });
+
+  test('3,4 - Should return an Account if HttpClient returns 200', () async {
+    final account = await sut.add(params: params);
+    expect(account.token, apiResult['access_token']);
   });
 }
