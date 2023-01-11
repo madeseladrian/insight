@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
-import 'package:insight/domain/errors/errors.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import 'package:insight/domain/entities/entities.dart';
+import 'package:insight/domain/errors/errors.dart';
 import 'package:insight/domain/params/params.dart';
 
 import 'package:insight/presentation/helpers/helpers.dart';
@@ -19,6 +19,7 @@ void main() {
   late String password;
   late AccountEntity accountEntity;
   late AuthenticationSpy authentication;
+  late SaveCurrentAccountSpy saveCurrentAccount;
   late ValidationSpy validation;
   late GetxLoginPresenter sut;
 
@@ -28,9 +29,11 @@ void main() {
     accountEntity = EntityFactory.makeAccount();
     authentication = AuthenticationSpy();
     authentication.mockAuthentication(accountEntity);
+    saveCurrentAccount = SaveCurrentAccountSpy();
     validation = ValidationSpy();
     sut = GetxLoginPresenter(
       authentication: authentication,
+      saveCurrentAccount: saveCurrentAccount,
       validation: validation
     );
   });
@@ -122,9 +125,9 @@ void main() {
     
     await sut.auth();
 
-    verify(() => authentication.auth(
-      AuthenticationParams(email: email, password: password)
-    )).called(1);
+    verify(() => authentication.auth(params:AuthenticationParams(
+      email: email, password: password
+    ))).called(1);
   });
 
   test('13 - Should emit correct events on Authentication success', () async {
@@ -154,6 +157,12 @@ void main() {
     expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
 
     await sut.auth();
+  });
+
+  test('16 - Should call SaveCurrentAccount with correct values', () async {
+    await sut.auth();
+
+    verify(() => saveCurrentAccount.save(accountEntity: accountEntity)).called(1);
   });
 
   test('18 - Should change page on success authentication', () async {

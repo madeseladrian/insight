@@ -14,7 +14,7 @@ class HttpAdapter implements HttpClient {
   Future request({required String url, required String method, Map? body, Map? headers
   }) async {
     final defaultHeaders = headers?.cast<String, String>() ?? {}..addAll({
-      "Content-Type": "application/x-www-form-urlencoded"
+      "content-type": "application/x-www-form-urlencoded"
     });
     final encoding = Encoding.getByName('utf-8');
     var response = Response('', 500);

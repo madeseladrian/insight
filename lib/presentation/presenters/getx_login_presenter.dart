@@ -15,6 +15,7 @@ class GetxLoginPresenter extends GetxController
 with FormManager, LoadingManager, NavigationManager, UIErrorManager 
 implements LoginPresenter {
   final Authentication authentication;
+  final SaveCurrentAccount saveCurrentAccount;
   final Validation validation;
 
   String? _email;
@@ -30,6 +31,7 @@ implements LoginPresenter {
 
   GetxLoginPresenter({
     required this.authentication,
+    required this.saveCurrentAccount,
     required this.validation
   });
 
@@ -72,10 +74,11 @@ implements LoginPresenter {
     try {
       mainError = null;
       isLoading = true;
-      await authentication.auth(AuthenticationParams(
+      final accountEntity = await authentication.auth(params: AuthenticationParams(
         email: _email, 
         password: _password
       ));
+      await saveCurrentAccount.save(accountEntity: accountEntity);
       navigateTo = '/initial';
     } on DomainError catch (error) {
       isLoading = false;
