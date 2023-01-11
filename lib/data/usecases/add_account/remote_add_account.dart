@@ -1,4 +1,5 @@
 import '../../../domain/entities/entities.dart';
+import '../../../domain/errors/errors.dart';
 import '../../../domain/features/features.dart';
 import '../../../domain/params/params.dart';
 
@@ -15,7 +16,11 @@ class RemoteAddAccount implements AddAccount {
   @override
   Future<AccountEntity> add({required AddAccountParams params}) async {
     final body = RemoteAddAccountParams.fromDomain(params).toJson();
-    final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
-    return RemoteAccountModel.fromJson(httpResponse).toEntity();
+    try {
+      final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
+      return RemoteAccountModel.fromJson(httpResponse).toEntity();
+    } catch (error) {
+      throw DomainError.unexpected;
+    }
   }
 }
