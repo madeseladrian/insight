@@ -165,6 +165,19 @@ void main() {
     verify(() => saveCurrentAccount.save(accountEntity: accountEntity)).called(1);
   });
 
+  test('17 - Should emit UnexpectedError if SaveCurrentAccount fails', () async {
+    saveCurrentAccount.mockSaveError();
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
+
+    await sut.auth();
+  });
+
   test('18 - Should change page on success authentication', () async {
     sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/initial')));
 
