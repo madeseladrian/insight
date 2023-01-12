@@ -65,4 +65,12 @@ void main() {
     await tester.enterText(find.bySemanticsLabel('Nome'), name);
     verify(() => presenter.validateName(name));
   });
+
+  testWidgets('7 - Should call validate with correct email', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final email = faker.internet.email();
+    await tester.enterText(find.bySemanticsLabel('Email'), email);
+    verify(() => presenter.validateEmail(email));
+  });
 }
