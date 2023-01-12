@@ -8,7 +8,7 @@ import '../login/login.dart';
 import 'signup.dart';
 
 class SignUpPage extends StatelessWidget
-with KeyboardManager, LoadingManager, UIErrorManager {
+with KeyboardManager, LoadingManager, NavigationManager, UIErrorManager {
   final SignUpPresenter presenter;
   
   const SignUpPage({Key? key, required this.presenter}) : super(key: key);
@@ -25,6 +25,7 @@ with KeyboardManager, LoadingManager, UIErrorManager {
           builder: (context) {
             handleLoading(context, presenter.isLoadingStream);
             handleMainError(context, presenter.mainErrorStream);
+            handleNavigation(presenter.navigateToStream);
 
             return Builder(
               builder: (context) {

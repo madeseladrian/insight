@@ -281,4 +281,14 @@ void main() {
 
     expect(find.text('O email já está em uso.'), findsOneWidget);
   });
+
+  testWidgets('27 - Should change page', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNavigateTo('any_route');
+    await tester.pumpAndSettle();
+
+    expect(currentRoute, 'any_route');
+    expect(find.text('fake page'), findsOneWidget);
+  });
 }
