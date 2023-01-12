@@ -303,4 +303,28 @@ void main() {
     await tester.pumpAndSettle();
     expect(currentRoute, '/signup');
   });
+
+  testWidgets('29 - Should call goToLogin on link click', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.pump();
+    final button = find.byKey(const Key('login header'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.goToLogin()).called(1);
+  });
+
+  testWidgets('30 - Should call support on click text button in the body', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.pump();
+    final button = find.byKey(const Key('support body'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.support()).called(1);
+  });
 }
