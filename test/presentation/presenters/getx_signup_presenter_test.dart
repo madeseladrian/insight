@@ -284,4 +284,10 @@ void main() {
 
     sut.goToLogin();
   });
+
+  test('32 - Should go to SupportPage on link click', () async {
+    sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/support')));
+
+    sut.support();
+  });
 } 

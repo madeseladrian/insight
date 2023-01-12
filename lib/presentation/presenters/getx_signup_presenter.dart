@@ -127,6 +127,6 @@ implements SignUpPresenter {
   
   @override
   void support() {
-    // TODO: implement support
+    navigateTo = '/support';
   }
 }
