@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
@@ -25,13 +23,31 @@ void main() {
   });
 
   group('post', () {
-    test('1,2,3,4 - Should call post with correct values', () async {
-      sut.request(url: url, method: 'post', body: {"any_key":"any_value"});
+    test('1,2,3,4 - Should call post with correct values', () async { 
+      await sut.request(url: url, method: 'post', body: {"any_key":"any_value"});
       verify(() => client.post(
         Uri.parse(url),
-        headers: {"content-type": "application/x-www-form-urlencoded"},
-        encoding: Encoding.getByName('utf-8'),
-        body: {"any_key":"any_value"}
+        headers: {
+          'content-type': 'application/json',
+          'accept': 'application/json'
+        },
+        body: '{"any_key":"any_value"}'
+      ));
+
+      await sut.request(
+        url: url, 
+        method: 'post', 
+        body: {'any_key': 'any_value'},
+        headers: {'any_header': 'any_value'}
+      );
+      verify(() => client.post(
+        Uri.parse(url),
+        headers: {
+          'content-type': 'application/json',
+          'accept': 'application/json',
+          'any_header': 'any_value'
+        },
+        body: '{"any_key":"any_value"}'
       ));
     });
 

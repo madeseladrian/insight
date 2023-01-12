@@ -25,6 +25,6 @@ class RemoteAddAccountParams {
     'name': name,
     'email': email, 
     'password': password, 
-    'passwordConfirmation': passwordConfirmation
+    'password_confirmation': passwordConfirmation
   };
 }

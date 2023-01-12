@@ -12,5 +12,5 @@ class RemoteAuthenticationParams {
   factory RemoteAuthenticationParams.fromDomain(AuthenticationParams params) =>
     RemoteAuthenticationParams(email: params.email, password: params.password);
 
-  Map toJson() => {"username": email, "password": password};
+  Map toJson() => {"email": email, "password": password};
 }

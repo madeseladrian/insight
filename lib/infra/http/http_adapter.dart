@@ -11,20 +11,19 @@ class HttpAdapter implements HttpClient {
   HttpAdapter({required this.client});
 
   @override
-  Future request({required String url, required String method, Map? body, Map? headers
-  }) async {
+  Future request({required String url, required String method, Map? body, Map? headers}) async {
     final defaultHeaders = headers?.cast<String, String>() ?? {}..addAll({
-      "content-type": "application/x-www-form-urlencoded"
+      'content-type': 'application/json',
+      'accept': 'application/json'
     });
-    final encoding = Encoding.getByName('utf-8');
+    final jsonBody = body != null ? jsonEncode(body) : null;
     var response = Response('', 500);
     try {
       if (method == 'post') {
         response = await client.post(
           Uri.parse(url), 
           headers: defaultHeaders,
-          encoding: encoding,
-          body: body
+          body: jsonBody
         );
       }
     } catch (error) {
