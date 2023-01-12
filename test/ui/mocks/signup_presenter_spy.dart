@@ -13,6 +13,7 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
   final isFormValidController = StreamController<bool>();
 
   SignUpPresenterSpy() {
+    when(() => signUp()).thenAnswer((_) async => _);
     when(() => nameErrorStream).thenAnswer((_) => nameErrorController.stream);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
