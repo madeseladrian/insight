@@ -1,7 +1,7 @@
 # SignUp Presenter
 
 > ## Regras
-1. ❌ Chamar Validation ao alterar o nome
+1. ✅ Chamar Validation ao alterar o nome
 2. ❌ Notificar o nameErrorStream com o mesmo erro do Validation, caso retorne erro
 3. ❌ Não notificar o nameErrorStream se o valor for igual ao último
 4. ❌ Notificar o isFormValidStream após alterar o nome, mas não notificar o isFormValidStream se o valor for igual ao último
