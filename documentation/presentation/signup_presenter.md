@@ -35,7 +35,7 @@
 26.✅ Notificar o mainErrorStream caso o AddAccount retorne erro: InvalidCredentials 
 27.✅ Notificar o mainErrorStream caso o AddAccount retorne erro: UnexpectedError
 
-28.❌ Gravar o Account no cache em caso de sucesso
+28.✅ Gravar o Account no cache em caso de sucesso
 29.❌ Notificar o mainErrorStream caso o SaveCurrentAccount retorne erro
 30.❌ Levar o usuário pra tela de Inicial em caso de sucesso
 31.❌ Levar o usuário pra tela de Suporte

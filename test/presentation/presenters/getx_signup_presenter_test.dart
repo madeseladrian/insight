@@ -18,6 +18,7 @@ void main() {
   late GetxSignUpPresenter sut;
   late AddAccountSpy addAccount;
   late ValidationSpy validation;
+  late SaveCurrentAccountSpy saveCurrentAccount;
   late String name;
   late String email;
   late String password;
@@ -33,9 +34,11 @@ void main() {
     addAccount = AddAccountSpy();
     addAccount.mockAddAccount(account);
     validation = ValidationSpy();
+    saveCurrentAccount = SaveCurrentAccountSpy();
     sut = GetxSignUpPresenter(
       addAccount: addAccount,
-      validation: validation
+      validation: validation,
+      saveCurrentAccount: saveCurrentAccount
     );
   });
 
@@ -253,5 +256,11 @@ void main() {
     expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.emailInUse]));
 
     await sut.signUp();
+  });
+
+  test('28 - Should call SaveCurrentAccount with correct value', () async {
+    await sut.signUp();
+
+    verify(() => saveCurrentAccount.save(accountEntity: account)).called(1);
   });
 } 

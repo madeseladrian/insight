@@ -14,6 +14,7 @@ class GetxSignUpPresenter extends GetxController
 with LoadingManager, FormManager, UIErrorManager {
   final AddAccount addAccount;
   final Validation validation;
+  final SaveCurrentAccount saveCurrentAccount;
 
   String? _name;
   String? _email;
@@ -32,7 +33,8 @@ with LoadingManager, FormManager, UIErrorManager {
 
   GetxSignUpPresenter({
     required this.addAccount,
-    required this.validation
+    required this.validation,
+    required this.saveCurrentAccount
   });
 
   UIError? _validateField({required String field}) {
@@ -89,13 +91,14 @@ with LoadingManager, FormManager, UIErrorManager {
     try {
       mainError = null;
       isLoading = true;
-      await addAccount.add(params: AddAccountParams(
+      final accountEntity = await addAccount.add(params: AddAccountParams(
           name: _name,
           email: _email,
           password: _password,
           passwordConfirmation: _passwordConfirmation
         )
       );
+      await saveCurrentAccount.save(accountEntity: accountEntity);
     } on DomainError catch (error) {
       isLoading = false;
       switch (error) {
