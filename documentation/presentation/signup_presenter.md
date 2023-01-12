@@ -23,7 +23,7 @@
 17.✅ Notificar o passwordConfirmationErrorStream com o mesmo erro do Validation, caso retorne error
 18.✅ Não notificar o passwordConfirmationErrorStream se o valor for igual ao último erro
 19.✅ Notificar o isFormValidStream após alterar a confirmação da senha, mas mas não notificar o isFormValidStream se o valor for igual ao último
-20.❌ Notificar o passwordConfirmationErrorStream com null, caso o Validation não retorne erro
+20.✅ Notificar o passwordConfirmationErrorStream com null, caso o Validation não retorne erro
 
 21.❌ Notificar o isFormValidStream desabilita o butão se qualquer campo estiver inválido
 22.❌ Notificar o isFormValidStream habilita o butão se os campos estiverem válidos

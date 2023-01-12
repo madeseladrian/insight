@@ -164,4 +164,12 @@ void main() {
     sut.validatePasswordConfirmation(password);
     sut.validatePasswordConfirmation(password);
   });
+
+  test('20 - Should passwordConfirmationErrorStream returns null if validation passwordconfirmation succeeds', () async {
+    sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, null)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+    
+    sut.validatePasswordConfirmation(password);
+  });
+
 } 
