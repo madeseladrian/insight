@@ -132,4 +132,15 @@ void main() {
     sut.validatePassword(password);
     sut.validatePassword(password);
   });
+
+  test('16 - Should call Validation with correct passwordConfirmation', () async {
+    final formData = {'name': null, 'email': null, 'password': null, 'passwordConfirmation': password};
+    
+    sut.validatePasswordConfirmation(password);
+    
+    verify(() => validation.validate(
+      field: 'passwordConfirmation', 
+      input: formData 
+    )).called(1);
+  });
 } 

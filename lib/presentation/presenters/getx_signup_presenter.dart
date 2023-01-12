@@ -34,7 +34,7 @@ with FormManager {
       'name': _name,
       'email': _email,
       'password': _password,
-      'passwordConfirmation': null
+      'passwordConfirmation': _passwordConfirmation
     };
     final error = validation.validate(field: field, input: formData);
     switch(error) {
@@ -70,6 +70,12 @@ with FormManager {
   void validatePassword(String password) {
     _password = password;
     _passwordError.value = _validateField(field: 'password',);
+    _validateForm();
+  }
+
+  void validatePasswordConfirmation(String passwordConfirmation) {
+    _passwordConfirmation = passwordConfirmation;
+    _passwordConfirmationError.value = _validateField(field: 'passwordConfirmation');
     _validateForm();
   }
 }
