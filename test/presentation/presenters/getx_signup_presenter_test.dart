@@ -48,4 +48,12 @@ void main() {
     sut.validateName(name);
     sut.validateName(name);
   });
+
+  test('5 - Should call nameErrorStream returns null if validation name succeeds', () async {
+    sut.nameErrorStream.listen(expectAsync1((error) => expect(error, null)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+    
+    sut.validateName(name);
+    sut.validateName(name);
+  });
 } 
