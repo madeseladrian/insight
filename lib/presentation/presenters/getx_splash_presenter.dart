@@ -11,6 +11,8 @@ class GetxSplashPresenter extends GetxController with NavigationManager implemen
 
   @override
   Future<void> checkAccount({int durationInSeconds = 2}) async {
+    await Future.delayed(Duration(seconds: durationInSeconds));
     await loadCurrentAccount.load();
+    navigateTo = '/initial';
   }
 }
