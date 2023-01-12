@@ -12,9 +12,11 @@ void main() {
   late GetxSignUpPresenter sut;
   late ValidationSpy validation;
   late String name;
+  late String email;
 
   setUp(() {
     name = faker.person.name();
+    email = faker.internet.email();
     validation = ValidationSpy();
     sut = GetxSignUpPresenter(
       validation: validation
@@ -55,5 +57,13 @@ void main() {
     
     sut.validateName(name);
     sut.validateName(name);
+  });
+
+  test('6 - Should call Validation with correct email', () async {
+    final formData = {'name': null, 'email': email, 'password': null, 'passwordConfirmation': null};
+
+    sut.validateEmail(email);
+    
+    verify(() => validation.validate(field: 'email', input: formData)).called(1);
   });
 } 

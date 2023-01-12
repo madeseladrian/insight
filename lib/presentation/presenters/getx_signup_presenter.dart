@@ -32,7 +32,7 @@ with FormManager {
   UIError? _validateField({required String field}) {
     final formData = {
       'name': _name,
-      'email': null,
+      'email': _email,
       'password': null,
       'passwordConfirmation': null
     };
@@ -58,6 +58,12 @@ with FormManager {
   void validateName(String name) {
     _name = name;
     _nameError.value = _validateField(field: 'name');
+    _validateForm();
+  }
+
+  void validateEmail(String email) {
+    _email = email;
+    _emailError.value = _validateField(field: 'email');
     _validateForm();
   }
 }
