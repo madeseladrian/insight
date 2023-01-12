@@ -1,10 +1,11 @@
 import 'package:faker/faker.dart';
-import 'package:insight/presentation/helpers/helpers.dart';
-import 'package:insight/ui/helpers/helpers.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:insight/presentation/helpers/helpers.dart';
 import 'package:insight/presentation/presenters/presenters.dart';
+
+import 'package:insight/ui/helpers/helpers.dart';
 
 import '../mocks/mocks.dart';
 
@@ -148,6 +149,16 @@ void main() {
     validation.mockValidationError(value: ValidationError.invalidField);
    
     sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, UIError.invalidField)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+    
+    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(password);
+  });
+
+  test('17,18,19 - Should passwordConfirmationErrorStream returns requiredFieldError if passwordConfirmation is null', () async {
+    validation.mockValidationError(value: ValidationError.requiredField);
+   
+    sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, UIError.requiredField)));
     sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
     
     sut.validatePasswordConfirmation(password);
