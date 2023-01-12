@@ -202,16 +202,16 @@ void main() {
     expect(Get.currentRoute, '/login');
   });
 
-  testWidgets('20 - Should call support on click text button in header', (WidgetTester tester) async {
+  testWidgets('20 - Should call add account on click text button in header', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();
-    final button = find.byKey(const Key('support header'));
+    final button = find.byKey(const Key('add account header'));
     await tester.ensureVisible(button);
     await tester.tap(button);
     await tester.pump();
 
-    verify(() => presenter.support()).called(1);
+    verify(() => presenter.goToSignUp()).called(1);
   });
 
   testWidgets('21 - Should call recoverPassword on click', (WidgetTester tester) async {

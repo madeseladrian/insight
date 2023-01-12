@@ -21,9 +21,9 @@ class LoginHeader extends StatelessWidget {
             onTap: () {},
           ),
           HeaderTextWidget(
-            key: const Key('support header'),
-            name: R.strings.support,
-            onTap: presenter.support,
+            key: const Key('add account header'),
+            name: R.strings.addAccount,
+            onTap: presenter.goToSignUp,
           )
         ],
       )

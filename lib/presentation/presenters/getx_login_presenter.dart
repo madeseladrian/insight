@@ -91,6 +91,11 @@ implements LoginPresenter {
   }
 
   @override
+  void goToSignUp() {
+    navigateTo = '/signup';
+  }
+
+  @override
   void support() {
     navigateTo = '/support';
   }
