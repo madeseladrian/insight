@@ -13,7 +13,7 @@
 10.✅ Validar email quando o usuário digitar no campo
 11.✅ Remover mensagem de erro se o email for válido
 12.✅ Mostrar mensagem de erro se o email for inválido
-13.❌ Mostrar mensagem de erro se o email for vazio
+13.✅ Mostrar mensagem de erro se o email for vazio
 14.✅ Validar senha quando o usuário digitar no campo
 15.❌ Remover mensagem de erro se a senha for válida
 16.❌ Mostrar mensagem de erro se a senha for vazia
