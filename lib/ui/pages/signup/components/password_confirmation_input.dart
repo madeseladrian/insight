@@ -16,6 +16,7 @@ class PasswordConfirmationInputSignUp extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(top: 8, bottom: 32),
           child: TextFormField(
+            key: const Key('passwordConfirmation-input-signup'),
             decoration: InputDecoration(
               labelText: R.strings.passwordConfirmation,
               errorText: snapshot.data?.description

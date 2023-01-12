@@ -245,4 +245,22 @@ void main() {
 
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
+
+  testWidgets('25 - Should present error message if add account fails', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    await tester.showKeyboard(find.byKey(const Key('passwordConfirmation-input-signup')));
+    await tester.pump();
+    final gestureDetector = find.byKey(const Key('keyboard-dismiss-signup'));
+    await tester.tap(gestureDetector);
+    await tester.pump();
+    final button = find.byType(ElevatedButton);
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+    presenter.emitMainError(UIError.invalidCredentials);
+    await tester.pump();
+
+    expect(find.text('Credenciais inválidas.'), findsOneWidget);
+  });
 }
