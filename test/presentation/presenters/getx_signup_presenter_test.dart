@@ -3,6 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import 'package:insight/domain/entities/entities.dart';
+import 'package:insight/domain/errors/errors.dart';
 import 'package:insight/domain/params/params.dart';
 
 import 'package:insight/presentation/helpers/helpers.dart';
@@ -233,6 +234,15 @@ void main() {
     expectLater(sut.isLoadingStream, emits(true));
     expectLater(sut.mainErrorStream, emits(null));
     
+    await sut.signUp();
+  });
+
+  test('26,27 - Should emit correct events on UnexpectedError', () async {
+    addAccount.mockAddAccountError(DomainError.unexpected);
+
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
+
     await sut.signUp();
   });
 } 

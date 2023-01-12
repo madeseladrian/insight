@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
-import 'package:insight/domain/features/add_account.dart';
 
+import '../../domain/errors/errors.dart';
+import '../../domain/features/features.dart';
 import '../../domain/params/params.dart';
+
 import '../../ui/helpers/helpers.dart';
 
 import '../contracts/contracts.dart';
@@ -84,14 +86,22 @@ with LoadingManager, FormManager, UIErrorManager {
   }
 
   Future<void> signUp() async {
-    mainError = null;
-    isLoading = true;
-    await addAccount.add(params: AddAccountParams(
-        name: _name,
-        email: _email,
-        password: _password,
-        passwordConfirmation: _passwordConfirmation
-      )
-    );  
+    try {
+      mainError = null;
+      isLoading = true;
+      await addAccount.add(params: AddAccountParams(
+          name: _name,
+          email: _email,
+          password: _password,
+          passwordConfirmation: _passwordConfirmation
+        )
+      );
+    } on DomainError catch (error) {
+      isLoading = false;
+      switch (error) {
+        case DomainError.emailInUse: mainError = UIError.emailInUse; break;
+        default: mainError = UIError.unexpected; break;
+      }
+    } 
   }
 }
