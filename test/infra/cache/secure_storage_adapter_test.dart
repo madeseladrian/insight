@@ -43,5 +43,11 @@ void main() {
       final fetchedValue = await sut.fetch(value);
       expect(fetchedValue, value);
     });
+
+    test('3 - Should throw if fetch secure throws', () async {
+      secureStorage.mockFetchError();
+      final future = sut.fetch(key);
+      expect(future, throwsA(const TypeMatcher<Exception>()));
+    });
   });
 }
