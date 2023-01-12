@@ -24,4 +24,14 @@ void main() {
 
     verify(() => presenter.checkAccount()).called(1);
   });
+
+  testWidgets('2 - Should change page', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNavigateTo('/any_route');
+    await tester.pumpAndSettle();
+
+    expect(currentRoute, '/any_route');
+    expect(find.text('fake page'), findsOneWidget);
+  });
 }

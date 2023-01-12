@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../mixins/mixins.dart';
 import 'splash_presenter.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatelessWidget with NavigationManager {
   final SplashPresenter presenter;
   
   const SplashPage({super.key, required this.presenter});
@@ -13,6 +14,8 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       body: Builder(
         builder: (context) {
+          handleNavigation(presenter.navigateToStream);
+
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
