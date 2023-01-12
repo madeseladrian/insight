@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../helpers/helpers.dart';
+import '../../mixins/mixins.dart';
 import '../login/login.dart';
 
 import 'signup.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget
+with LoadingManager {
   final SignUpPresenter presenter;
   
   const SignUpPage({Key? key, required this.presenter}) : super(key: key);
@@ -21,6 +23,8 @@ class SignUpPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: Builder(
           builder: (context) {
+            handleLoading(context, presenter.isLoadingStream);
+
             return ConstrainedBox(
               constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
               child: Center(

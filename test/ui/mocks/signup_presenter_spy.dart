@@ -11,6 +11,7 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
   final passwordErrorController = StreamController<UIError?>();
   final passwordConfirmationErrorController = StreamController<UIError?>();
   final isFormValidController = StreamController<bool>();
+  final isLoadingController = StreamController<bool>();
 
   SignUpPresenterSpy() {
     when(() => signUp()).thenAnswer((_) async => _);
@@ -19,6 +20,7 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
     when(() => passwordConfirmationErrorStream).thenAnswer((_) => passwordConfirmationErrorController.stream);
     when(() => isFormValidStream).thenAnswer((_) => isFormValidController.stream);
+    when(() => isLoadingStream).thenAnswer((_) => isLoadingController.stream);
   }
 
   void emitNameValid() => nameErrorController.add(null);
@@ -31,7 +33,8 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
   void emitPasswordConfirmationError(UIError error) => passwordConfirmationErrorController.add(error);
   void emitFormValid() => isFormValidController.add(true);
   void emitFormError() => isFormValidController.add(false);
-
+  void emitLoading([bool show = true]) => isLoadingController.add(show);
+  
   @override
   void dispose() {
     nameErrorController.close();
