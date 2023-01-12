@@ -9,7 +9,7 @@
 6. ✅ Validar nome quando o usuário digitar no campo
 7. ✅ Remover mensagem de erro se o nome for válido
 8. ✅ Mostrar mensagem de erro se o nome for inválido
-9. ❌ Mostrar mensagem de erro se o nome for vazio
+9. ✅ Mostrar mensagem de erro se o nome for vazio
 10.✅ Validar email quando o usuário digitar no campo
 11.❌ Remover mensagem de erro se o email for válido
 12.❌ Mostrar mensagem de erro se o email for inválido

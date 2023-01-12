@@ -88,6 +88,15 @@ void main() {
     expect(find.text('Campo inválido'), findsOneWidget);
   });
 
+  testWidgets('9 - Should present error if name is empty', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNameError(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text('Campo obrigatório'), findsOneWidget);
+  });
+
   testWidgets('10 - Should call validate with correct email', (WidgetTester tester) async {
     await loadPage(tester);
 
