@@ -1,4 +1,6 @@
 import 'package:faker/faker.dart';
+import 'package:insight/presentation/helpers/helpers.dart';
+import 'package:insight/ui/helpers/helpers.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -25,5 +27,15 @@ void main() {
     sut.validateName(name);
     
     verify(() => validation.validate(field: 'name', input: formData)).called(1);
+  });
+
+  test('2,3,4 - Should call nameErrorStream returns invalidFieldError if name is empty', () async {
+    validation.mockValidationError(value: ValidationError.invalidField);
+   
+    sut.nameErrorStream.listen(expectAsync1((error) => expect(error, UIError.invalidField)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+
+    sut.validateName(name);
+    sut.validateName(name);
   });
 } 
