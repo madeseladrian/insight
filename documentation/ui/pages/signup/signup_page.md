@@ -7,17 +7,17 @@
 4. ✅ O campo confirmar senha deve começar sem exibir mensagem de erro
 5. ✅ O botão de criar conta deve começar desabilitado
 6. ✅ Validar nome quando o usuário digitar no campo
-7. ✅ Validar email quando o usuário digitar no campo
-8. ✅ Validar senha quando o usuário digitar no campo
-9. ❌ Validar confirmar senha quando o usuário digitar no campo
-10.❌ Mostrar mensagem de erro se o nome for inválido
-11.❌ Mostrar mensagem de erro se o nome for vazio
-12.❌ Remover mensagem de erro se o nome for válido
-13.❌ Mostrar mensagem de erro se o email for inválido
-14.❌ Mostrar mensagem de erro se o email for vazio
-15.❌ Remover mensagem de erro se o email for válido
+7. ✅ Remover mensagem de erro se o nome for válido
+8. ❌ Mostrar mensagem de erro se o nome for inválido
+9. ❌ Mostrar mensagem de erro se o nome for vazio
+10.✅ Validar email quando o usuário digitar no campo
+11.❌ Remover mensagem de erro se o email for válido
+12.❌ Mostrar mensagem de erro se o email for inválido
+13.❌ Mostrar mensagem de erro se o email for vazio
+14.✅ Validar senha quando o usuário digitar no campo
+15.❌ Remover mensagem de erro se a senha for válida
 16.❌ Mostrar mensagem de erro se a senha for vazia
-17.❌ Remover mensagem de erro se a senha for válida
+17.❌ Validar confirmar senha quando o usuário digitar no campo
 18.❌ Mostrar mensagem de erro se a confirmação de senha for vazia
 19.❌ Remover mensagem de erro se a confirmação de senha for válida
 20.❌ Habilitar o botão de criar conta se todos os campos forem válidos

@@ -15,6 +15,10 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
   }
+
+  void emitNameValid() => nameErrorController.add(null);
+  void emitNameError(UIError error) => nameErrorController.add(error);
+
   @override
   void dispose() {
     nameErrorController.close();

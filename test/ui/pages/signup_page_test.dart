@@ -66,7 +66,19 @@ void main() {
     verify(() => presenter.validateName(name));
   });
 
-  testWidgets('7 - Should call validate with correct email', (WidgetTester tester) async {
+  testWidgets('7 - Should present no error if name is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNameValid();
+    await tester.pump();
+
+    expect(
+      find.descendant(of: find.bySemanticsLabel('Nome'), matching: find.byType(Text)),
+      findsOneWidget
+    );
+  });
+
+  testWidgets('10 - Should call validate with correct email', (WidgetTester tester) async {
     await loadPage(tester);
 
     final email = faker.internet.email();
@@ -74,7 +86,7 @@ void main() {
     verify(() => presenter.validateEmail(email));
   });
 
-  testWidgets('8 - Should call validate with correct password', (WidgetTester tester) async {
+  testWidgets('14 - Should call validate with correct password', (WidgetTester tester) async {
     await loadPage(tester);
 
     final password = faker.internet.password();
