@@ -18,6 +18,7 @@ class PasswordConfirmationInputSignUp extends StatelessWidget {
           child: TextFormField(
             decoration: InputDecoration(
               labelText: R.strings.passwordConfirmation,
+              errorText: snapshot.data?.description
             ),
             obscureText: true,
             onChanged: presenter.validatePasswordConfirmation

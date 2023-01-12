@@ -183,4 +183,13 @@ void main() {
       findsOneWidget
     );
   });
+
+  testWidgets('19 - Should present error if passwordConfirmation is empty', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitPasswordConfirmationError(UIError.requiredField);
+    await tester.pump();
+
+    expect(find.text('Campo obrigatório'), findsOneWidget);
+  });
 }
