@@ -117,6 +117,15 @@ void main() {
     );
   });
 
+  testWidgets('12 - Should present error if email is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitEmailError(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text('Campo inválido'), findsOneWidget);
+  });
+
   testWidgets('14 - Should call validate with correct password', (WidgetTester tester) async {
     await loadPage(tester);
 

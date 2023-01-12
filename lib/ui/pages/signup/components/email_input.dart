@@ -15,7 +15,8 @@ class EmailInputSignUp extends StatelessWidget {
       builder: (context, snapshot) {
         return TextFormField(
           decoration: InputDecoration(
-            labelText: R.strings.email
+            labelText: R.strings.email,
+            errorText: snapshot.data?.description
           ),
           keyboardType: TextInputType.emailAddress,
           onChanged: presenter.validateEmail
