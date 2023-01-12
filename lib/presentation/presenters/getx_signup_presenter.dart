@@ -33,7 +33,7 @@ with FormManager {
     final formData = {
       'name': _name,
       'email': _email,
-      'password': null,
+      'password': _password,
       'passwordConfirmation': null
     };
     final error = validation.validate(field: field, input: formData);
@@ -64,6 +64,12 @@ with FormManager {
   void validateEmail(String email) {
     _email = email;
     _emailError.value = _validateField(field: 'email');
+    _validateForm();
+  }
+
+  void validatePassword(String password) {
+    _password = password;
+    _passwordError.value = _validateField(field: 'password',);
     _validateForm();
   }
 }
