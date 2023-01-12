@@ -23,8 +23,8 @@ class SignUpHeader extends StatelessWidget {
             onTap: presenter.goToLogin,
           ),
           HeaderTextWidget(
-            key: const Key('support header'),
-            name: R.strings.support,
+            key: const Key('add account header'),
+            name: R.strings.addAccount,
             onTap: () {}
           )
         ],
