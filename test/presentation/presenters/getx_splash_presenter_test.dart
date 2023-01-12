@@ -29,4 +29,12 @@ void main() {
 
     await sut.checkAccount(durationInSeconds: 0);
   });
+
+  test('3,4 - Should go to login page on error', () async {
+    loadCurrentAccount.mockLoadError();
+  
+    sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/login')));
+
+    await sut.checkAccount(durationInSeconds: 0);
+  });
 }
