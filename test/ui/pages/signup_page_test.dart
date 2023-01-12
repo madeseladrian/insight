@@ -291,4 +291,16 @@ void main() {
     expect(currentRoute, 'any_route');
     expect(find.text('fake page'), findsOneWidget);
   });
+
+  testWidgets('28 - Should not change page', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNavigateTo('');
+    await tester.pumpAndSettle();
+    expect(currentRoute, '/signup');
+
+    presenter.emitNavigateTo('');
+    await tester.pumpAndSettle();
+    expect(currentRoute, '/signup');
+  });
 }
