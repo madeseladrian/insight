@@ -15,7 +15,8 @@ class PasswordInputSignUp extends StatelessWidget {
       builder: (context, snapshot) {
         return TextFormField(
           decoration: InputDecoration(
-            labelText: R.strings.password
+            labelText: R.strings.password,
+            errorText: snapshot.data?.description
           ),
           obscureText: true,
           onChanged: presenter.validatePassword
