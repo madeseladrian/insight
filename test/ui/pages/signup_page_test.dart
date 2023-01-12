@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import 'package:insight/ui/helpers/helpers.dart';
 import 'package:insight/ui/pages/pages.dart';
 
 import '../mocks/mocks.dart';
@@ -76,6 +77,15 @@ void main() {
       find.descendant(of: find.bySemanticsLabel('Nome'), matching: find.byType(Text)),
       findsOneWidget
     );
+  });
+
+  testWidgets('8 - Should present error if name is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNameError(UIError.invalidField);
+    await tester.pump();
+
+    expect(find.text('Campo inválido'), findsOneWidget);
   });
 
   testWidgets('10 - Should call validate with correct email', (WidgetTester tester) async {

@@ -16,6 +16,7 @@ class NameInputSignUp extends StatelessWidget {
         return TextFormField(
           decoration: InputDecoration(
             labelText: R.strings.name,
+            errorText: snapshot.data?.description
           ),
           keyboardType: TextInputType.name,
           onChanged: presenter.validateName,
