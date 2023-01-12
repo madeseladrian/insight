@@ -263,4 +263,13 @@ void main() {
 
     verify(() => saveCurrentAccount.save(accountEntity: account)).called(1);
   });
+
+  test('29 - Should emit UnexpectedError if SaveCurrentAccount fails', () async {
+    saveCurrentAccount.mockSaveError();
+    
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
+
+    await sut.signUp();
+  });
 } 
