@@ -237,11 +237,20 @@ void main() {
     await sut.signUp();
   });
 
-  test('26,27 - Should emit correct events on UnexpectedError', () async {
+  test('26 - Should emit correct events on UnexpectedError', () async {
     addAccount.mockAddAccountError(DomainError.unexpected);
 
     expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
     expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
+
+    await sut.signUp();
+  });
+
+  test('27 - Should emit correct events on EmailInUseError', () async {
+    addAccount.mockAddAccountError(DomainError.emailInUse);
+
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.emailInUse]));
 
     await sut.signUp();
   });
