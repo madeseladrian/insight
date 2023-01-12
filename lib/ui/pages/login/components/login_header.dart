@@ -6,7 +6,7 @@ import '../../../helpers/i18n/i18n.dart';
 import '../login.dart';
 
 class LoginHeader extends StatelessWidget {
-  const LoginHeader({Key? key}) : super(key: key);
+  const LoginHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

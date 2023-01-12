@@ -5,11 +5,12 @@ class HelpLogin extends StatelessWidget {
   final String routeText;
   final Function() onTap;
 
-  const HelpLogin({Key? key, 
+  const HelpLogin({
+    super.key, 
     required this.text, 
     required this.routeText, 
     required this.onTap
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

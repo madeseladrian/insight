@@ -8,7 +8,7 @@ import 'login.dart';
 class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, UIErrorManager {
   final LoginPresenter presenter;
 
-  const LoginPage({Key? key, required this.presenter}) : super(key: key);
+  const LoginPage({super.key, required this.presenter});
 
   @override
   Widget build(BuildContext context) {    

@@ -4,10 +4,11 @@ class HeaderTextWidget extends StatelessWidget {
   final String name;
   final Function() onTap;
 
-  const HeaderTextWidget({Key? key, 
+  const HeaderTextWidget({
+    super.key, 
     required this.name,
     required this.onTap
-  }) : super(key: key);
+  });
   
   @override
   Widget build(BuildContext context) {

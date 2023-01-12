@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import '../../helpers/helpers.dart';
 import '../../mixins/mixins.dart';
 import '../login/login.dart';
-
 import 'signup.dart';
 
 class SignUpPage extends StatelessWidget
 with KeyboardManager, LoadingManager, NavigationManager, UIErrorManager {
   final SignUpPresenter presenter;
   
-  const SignUpPage({Key? key, required this.presenter}) : super(key: key);
+  const SignUpPage({super.key, required this.presenter});
 
   @override
   Widget build(BuildContext context) {
