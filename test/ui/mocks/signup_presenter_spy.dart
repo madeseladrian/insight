@@ -8,15 +8,17 @@ import 'package:insight/ui/pages/pages.dart';
 class SignUpPresenterSpy extends Mock implements SignUpPresenter {
   final nameErrorController = StreamController<UIError?>();
   final emailErrorController = StreamController<UIError?>();
-
+  final passwordErrorController = StreamController<UIError?>();
+    
   SignUpPresenterSpy() {
     when(() => nameErrorStream).thenAnswer((_) => nameErrorController.stream);
     when(() => emailErrorStream).thenAnswer((_) => emailErrorController.stream);
+    when(() => passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
   }
-
   @override
   void dispose() {
     nameErrorController.close();
     emailErrorController.close();
+    passwordErrorController.close();
   }
 }

@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../helpers/helpers.dart';
+import '../signup.dart';
  
 class PasswordInputSignUp extends StatelessWidget {
-  const PasswordInputSignUp({ Key? key }) : super(key: key);
+  const PasswordInputSignUp({super.key});
  
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: R.strings.password,
-      ),
-      obscureText: true
+    final presenter = Get.find<SignUpPresenter>();
+    return StreamBuilder<UIError?>(
+      stream: presenter.passwordErrorStream,
+      builder: (context, snapshot) {
+        return TextFormField(
+          decoration: InputDecoration(
+            labelText: R.strings.password
+          ),
+          obscureText: true,
+          onChanged: presenter.validatePassword
+        );
+      }
     );
   }
 }
