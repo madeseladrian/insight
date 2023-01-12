@@ -1,5 +1,7 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import 'package:insight/ui/pages/pages.dart';
 
@@ -54,5 +56,13 @@ void main() {
     final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(button.onPressed, null);
     expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('6 - Should call validate with correct name', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final name = faker.person.name();
+    await tester.enterText(find.bySemanticsLabel('Nome'), name);
+    verify(() => presenter.validateName(name));
   });
 }

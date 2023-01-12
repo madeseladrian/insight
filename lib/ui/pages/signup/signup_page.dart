@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../helpers/helpers.dart';
 import '../login/login.dart';
@@ -12,6 +13,8 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(presenter);
+    
     return Container(
       decoration: boxImage,
       child: Scaffold(
