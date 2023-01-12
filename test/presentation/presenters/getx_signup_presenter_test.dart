@@ -114,4 +114,14 @@ void main() {
     sut.validatePassword(password);
     sut.validatePassword(password);
   });
+
+  test('12,13,14 - Should passwordErrorStream returns requiredFieldError if password is null', () async {
+    validation.mockValidationError(value: ValidationError.requiredField);
+   
+    sut.passwordErrorStream.listen(expectAsync1((error) => expect(error, UIError.requiredField)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+
+    sut.validatePassword(password);
+    sut.validatePassword(password);
+  });
 } 
