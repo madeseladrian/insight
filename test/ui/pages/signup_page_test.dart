@@ -192,4 +192,14 @@ void main() {
 
     expect(find.text('Campo obrigatório'), findsOneWidget);
   });
+
+  testWidgets('20 - Should enable button if form is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitFormValid();
+    await tester.pump();
+
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+    expect(button.onPressed, isNotNull);
+  });
 }
