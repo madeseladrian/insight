@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../helpers/helpers.dart';
-import '../../mixins/mixins.dart';
-import 'login.dart';
+import '../login/login.dart';
 
-class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, UIErrorManager {
-  final LoginPresenter presenter;
+import 'signup.dart';
 
-  const LoginPage({Key? key, required this.presenter}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  final SignUpPresenter presenter;
+  
+  const SignUpPage({Key? key, required this.presenter}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {    
-    Get.put(presenter);
-    
+  Widget build(BuildContext context) {
     return Container(
       decoration: boxImage,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Builder(
           builder: (context) {
-            handleLoading(context, presenter.isLoadingStream);
-            handleMainError(context, presenter.mainErrorStream);
-            handleNavigation(presenter.navigateToStream);
-
             return ConstrainedBox(
               constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
               child: Center(
@@ -31,7 +25,7 @@ class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, 
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const LoginHeader(),
+                    const SignUpHeader(),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -43,20 +37,16 @@ class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, 
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: const [
-                          EmailInputLogin(),
-                          PasswordInputLogin(),
-                          LoginButton()
+                          NameInputSignUp(),
+                          EmailInputSignUp(),
+                          PasswordInputSignUp(),
+                          PasswordConfirmationInputSignUp(),
+                          SignUpButton()
                         ],
                       ),
                     ),
                     Column(
                       children: [
-                        HelpLogin(
-                          key: const Key('recover password'),
-                          text: R.strings.forgotPassword, 
-                          routeText: R.strings.recoverPassword, 
-                          onTap: presenter.recoverPassword
-                        ),
                         HelpLogin(
                           key: const Key('support body'),
                           text: R.strings.needHelp, 

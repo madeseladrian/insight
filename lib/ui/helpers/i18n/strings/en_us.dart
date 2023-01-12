@@ -8,13 +8,16 @@ class EnUs implements Translation {
   String get msgRequiredField => 'Required field';
   String get msgUnexpectedError => 'Something wrong happened. Please try again soon.';
 
+  String get addAccount => 'Add Account';
   String get clickHere => 'Click here';
   String get email => 'Email';
   String get enter => 'Enter';
   String get forgotPassword => 'Forgot password?';
   String get login => 'login';
+  String get name => 'Name';
   String get needHelp => 'Need help?';
   String get password => 'Password';
+  String get passwordConfirmation => 'Password confirmation';
   String get recoverPassword => 'Recover password';
   String get support => 'support';
 }

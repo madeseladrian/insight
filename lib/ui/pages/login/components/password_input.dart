@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../helpers/helpers.dart';
 import '../login.dart';
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({super.key});
+class PasswordInputLogin extends StatelessWidget {
+  const PasswordInputLogin({super.key});
 
   @override
   Widget build(BuildContext context) {

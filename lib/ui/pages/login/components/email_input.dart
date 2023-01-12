@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../helpers/helpers.dart';
 import '../login.dart';
 
-class EmailInput extends StatelessWidget {
-  const EmailInput({super.key});
+class EmailInputLogin extends StatelessWidget {
+  const EmailInputLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class EmailInput extends StatelessWidget {
             errorText: snapshot.data?.description
           ),
           keyboardType: TextInputType.emailAddress,
-          onChanged: presenter.validateEmail,
+          onChanged: presenter.validateEmail
         );
-      },
+      }
     );
   }
 }
