@@ -17,7 +17,7 @@
 14.✅ Validar senha quando o usuário digitar no campo
 15.✅ Remover mensagem de erro se a senha for válida
 16.✅ Mostrar mensagem de erro se a senha for vazia
-17.❌ Validar confirmar senha quando o usuário digitar no campo
+17.✅ Validar confirmar senha quando o usuário digitar no campo
 18.❌ Mostrar mensagem de erro se a confirmação de senha for vazia
 19.❌ Remover mensagem de erro se a confirmação de senha for válida
 20.❌ Habilitar o botão de criar conta se todos os campos forem válidos

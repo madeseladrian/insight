@@ -163,4 +163,12 @@ void main() {
 
     expect(find.text('Campo obrigatório'), findsOneWidget);
   });
+
+  testWidgets('17 - Should call validate with correct passwordConfirmation', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final passwordConfirmation = faker.internet.password();
+    await tester.enterText(find.bySemanticsLabel('Confirmar senha'), passwordConfirmation);
+    verify(() => presenter.validatePasswordConfirmation(passwordConfirmation));
+  });
 }

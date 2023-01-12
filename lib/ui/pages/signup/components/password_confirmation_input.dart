@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../helpers/helpers.dart';
+import '../signup.dart';
  
 class PasswordConfirmationInputSignUp extends StatelessWidget {
-  const PasswordConfirmationInputSignUp({ Key? key }) : super(key: key);
+  const PasswordConfirmationInputSignUp({super.key});
  
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8, bottom: 32),
-      child: TextFormField(
-        decoration: InputDecoration(
-          labelText: R.strings.passwordConfirmation,
-        ),
-        obscureText: true,
-      ),
+    final presenter = Get.find<SignUpPresenter>();
+    return StreamBuilder<UIError?>(
+      stream: presenter.passwordConfirmationErrorStream,
+      builder: (context, snapshot) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 32),
+          child: TextFormField(
+            decoration: InputDecoration(
+              labelText: R.strings.passwordConfirmation,
+            ),
+            obscureText: true,
+            onChanged: presenter.validatePasswordConfirmation
+          ),
+        );
+      }
     );
   }
 }
