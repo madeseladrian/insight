@@ -172,4 +172,14 @@ void main() {
     sut.validatePasswordConfirmation(password);
   });
 
+  test('21 - Should call isFormValidStream disable form button if any field is invalid', () async {
+    validation.mockValidationError(field: 'email', value: ValidationError.requiredField);
+    
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(password);
+  });
 } 
