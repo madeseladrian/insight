@@ -15,7 +15,7 @@
 12.✅ Mostrar mensagem de erro se o email for inválido
 13.✅ Mostrar mensagem de erro se o email for vazio
 14.✅ Validar senha quando o usuário digitar no campo
-15.❌ Remover mensagem de erro se a senha for válida
+15.✅ Remover mensagem de erro se a senha for válida
 16.❌ Mostrar mensagem de erro se a senha for vazia
 17.❌ Validar confirmar senha quando o usuário digitar no campo
 18.❌ Mostrar mensagem de erro se a confirmação de senha for vazia

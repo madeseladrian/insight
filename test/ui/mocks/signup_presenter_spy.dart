@@ -20,6 +20,8 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
   void emitNameError(UIError error) => nameErrorController.add(error);
   void emitEmailValid() => emailErrorController.add(null);
   void emitEmailError(UIError error) => emailErrorController.add(error);
+  void emitPasswordValid() => passwordErrorController.add(null);
+  void emitPasswordError(UIError error) => passwordErrorController.add(error);
 
   @override
   void dispose() {
