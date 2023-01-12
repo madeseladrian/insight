@@ -105,6 +105,18 @@ void main() {
     verify(() => presenter.validateEmail(email));
   });
 
+  testWidgets('11 - Should present no error if email is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitEmailValid();
+    await tester.pump();
+
+    expect(
+      find.descendant(of: find.bySemanticsLabel('Email'), matching: find.byType(Text)),
+      findsOneWidget
+    );
+  });
+
   testWidgets('14 - Should call validate with correct password', (WidgetTester tester) async {
     await loadPage(tester);
 
