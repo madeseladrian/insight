@@ -2,7 +2,9 @@ import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:insight/domain/errors/errors.dart';
 import 'package:insight/domain/entities/entities.dart';
+
 import 'package:insight/data/usecases/usecases.dart';
 
 import '../../mocks/mocks.dart';
@@ -27,5 +29,11 @@ void main() {
   test('2 - Should return an AccountEntity', () async {
     final account = await sut.load();
     expect(account, AccountEntity(token: token));
+  });
+
+  test('3 - Should throw UnexpectedError if FetchSecureCacheStorage throws', () async {
+    secureCacheStorage.mockFetchError();
+    final future = sut.load();
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
