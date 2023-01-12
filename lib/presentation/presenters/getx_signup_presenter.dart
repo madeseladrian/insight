@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:insight/domain/features/add_account.dart';
 
+import '../../domain/params/params.dart';
 import '../../ui/helpers/helpers.dart';
 
 import '../contracts/contracts.dart';
@@ -8,6 +10,7 @@ import '../mixins/mixins.dart';
 
 class GetxSignUpPresenter extends GetxController 
 with FormManager {
+  final AddAccount addAccount;
   final Validation validation;
 
   String? _name;
@@ -26,6 +29,7 @@ with FormManager {
   Stream<UIError?> get passwordConfirmationErrorStream => _passwordConfirmationError.stream;
 
   GetxSignUpPresenter({
+    required this.addAccount,
     required this.validation
   });
 
@@ -77,5 +81,15 @@ with FormManager {
     _passwordConfirmation = passwordConfirmation;
     _passwordConfirmationError.value = _validateField(field: 'passwordConfirmation');
     _validateForm();
+  }
+
+  Future<void> signUp() async {
+    await addAccount.add(params: AddAccountParams(
+        name: _name,
+        email: _email,
+        password: _password,
+        passwordConfirmation: _passwordConfirmation
+      )
+    );  
   }
 }

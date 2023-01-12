@@ -2,28 +2,45 @@ import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:insight/domain/entities/entities.dart';
+import 'package:insight/domain/params/params.dart';
+
 import 'package:insight/presentation/helpers/helpers.dart';
 import 'package:insight/presentation/presenters/presenters.dart';
 
 import 'package:insight/ui/helpers/helpers.dart';
 
+import '../../domain/mocks/mocks.dart';
 import '../mocks/mocks.dart';
 
 void main() {
   late GetxSignUpPresenter sut;
+  late AddAccountSpy addAccount;
   late ValidationSpy validation;
   late String name;
   late String email;
   late String password;
+  late String passwordConfirmation;
+  late AccountEntity account;
 
   setUp(() {
     name = faker.person.name();
     email = faker.internet.email();
     password = faker.internet.password();
+    passwordConfirmation = faker.internet.password();
+    account = EntityFactory.makeAccount();
+    addAccount = AddAccountSpy();
+    addAccount.mockAddAccount(account);
     validation = ValidationSpy();
     sut = GetxSignUpPresenter(
+      addAccount: addAccount,
       validation: validation
     );
+  });
+
+  setUpAll(() {
+    registerFallbackValue(ParamsFactory.makeAddAccount());
+    registerFallbackValue(EntityFactory.makeAccount());
   });
 
   test('1 - Should call Validation with correct name', () async {
@@ -135,9 +152,9 @@ void main() {
   });
 
   test('16 - Should call Validation with correct passwordConfirmation', () async {
-    final formData = {'name': null, 'email': null, 'password': null, 'passwordConfirmation': password};
+    final formData = {'name': null, 'email': null, 'password': null, 'passwordConfirmation': passwordConfirmation};
     
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
     
     verify(() => validation.validate(
       field: 'passwordConfirmation', 
@@ -151,8 +168,8 @@ void main() {
     sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, UIError.invalidField)));
     sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
     
-    sut.validatePasswordConfirmation(password);
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+    sut.validatePasswordConfirmation(passwordConfirmation);
   });
 
   test('17,18,19 - Should passwordConfirmationErrorStream returns requiredFieldError if passwordConfirmation is null', () async {
@@ -161,15 +178,15 @@ void main() {
     sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, UIError.requiredField)));
     sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
     
-    sut.validatePasswordConfirmation(password);
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+    sut.validatePasswordConfirmation(passwordConfirmation);
   });
 
   test('20 - Should passwordConfirmationErrorStream returns null if validation passwordconfirmation succeeds', () async {
     sut.passwordConfirmationErrorStream.listen(expectAsync1((error) => expect(error, null)));
     sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
     
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
   });
 
   test('21 - Should call isFormValidStream disable form button if any field is invalid', () async {
@@ -180,7 +197,7 @@ void main() {
     sut.validateName(name);
     sut.validateEmail(email);
     sut.validatePassword(password);
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
   });
 
   test('22,23 - Should call isFormValidStream enable form button if all fields are valid', () async {
@@ -189,10 +206,26 @@ void main() {
     sut.validateName(name);
     sut.validateEmail(email);
     sut.validatePassword(password);
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
     sut.validateName(name);
     sut.validateEmail(email);
     sut.validatePassword(password);
-    sut.validatePasswordConfirmation(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+  });
+
+  test('24 - Should call AddAccount with correct values', () async {
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(passwordConfirmation);
+    
+    await sut.signUp();
+
+    verify(() => addAccount.add(params: AddAccountParams(
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirmation: passwordConfirmation
+    ))).called(1);
   });
 } 
