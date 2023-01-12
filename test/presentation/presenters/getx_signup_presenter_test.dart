@@ -272,4 +272,10 @@ void main() {
 
     await sut.signUp();
   });
+
+  test('30 - Should change page on success', () async {
+    sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/initial')));
+
+    await sut.signUp();
+  });
 } 

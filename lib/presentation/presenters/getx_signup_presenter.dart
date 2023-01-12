@@ -11,7 +11,7 @@ import '../helpers/helpers.dart';
 import '../mixins/mixins.dart';
 
 class GetxSignUpPresenter extends GetxController 
-with LoadingManager, FormManager, UIErrorManager {
+with LoadingManager, FormManager, NavigationManager, UIErrorManager {
   final AddAccount addAccount;
   final Validation validation;
   final SaveCurrentAccount saveCurrentAccount;
@@ -99,6 +99,7 @@ with LoadingManager, FormManager, UIErrorManager {
         )
       );
       await saveCurrentAccount.save(accountEntity: accountEntity);
+      navigateTo = '/initial';
     } on DomainError catch (error) {
       isLoading = false;
       switch (error) {
