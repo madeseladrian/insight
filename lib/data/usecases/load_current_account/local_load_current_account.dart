@@ -1,3 +1,4 @@
+import '../../../domain/entities/entities.dart';
 import '../../contracts/contracts.dart';
 
 class LocalLoadCurrentAccount {
@@ -5,7 +6,8 @@ class LocalLoadCurrentAccount {
 
   LocalLoadCurrentAccount({required this.fetchSecureCacheStorage});
 
-  Future<void> load() async {
-    await fetchSecureCacheStorage.fetch('token');
+  Future<AccountEntity> load() async {
+    final token = await fetchSecureCacheStorage.fetch('token');
+    return AccountEntity(token: token);
   } 
 }
