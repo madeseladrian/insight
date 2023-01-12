@@ -38,4 +38,14 @@ void main() {
     sut.validateName(name);
     sut.validateName(name);
   });
+
+  test('2,3,4 - Should call nameErrorStream returns requiredFieldError if name is null', () async {
+    validation.mockValidationError(value: ValidationError.requiredField);
+   
+    sut.nameErrorStream.listen(expectAsync1((error) => expect(error, UIError.requiredField)));
+    sut.isFormValidStream.listen(expectAsync1((isValid) => expect(isValid, false)));
+
+    sut.validateName(name);
+    sut.validateName(name);
+  });
 } 
