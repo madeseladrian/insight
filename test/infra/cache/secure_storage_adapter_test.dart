@@ -38,5 +38,10 @@ void main() {
       await sut.fetch(key);
       verify(() => secureStorage.read(key: key));
     });
+
+    test('2 - Should return correct value on success', () async {
+      final fetchedValue = await sut.fetch(value);
+      expect(fetchedValue, value);
+    });
   });
 }
