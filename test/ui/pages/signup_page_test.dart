@@ -171,4 +171,16 @@ void main() {
     await tester.enterText(find.bySemanticsLabel('Confirmar senha'), passwordConfirmation);
     verify(() => presenter.validatePasswordConfirmation(passwordConfirmation));
   });
+
+  testWidgets('18 - Should present no error if passwordConfirmation is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitPasswordConfirmationValid();
+    await tester.pump();
+
+    expect(
+      find.descendant(of: find.bySemanticsLabel('Confirmar senha'), matching: find.byType(Text)),
+      findsOneWidget
+    );
+  });
 }
