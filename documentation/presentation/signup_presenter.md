@@ -26,16 +26,17 @@
 20.✅ Notificar o passwordConfirmationErrorStream com null, caso o Validation não retorne erro
 
 21.✅ Notificar o isFormValidStream desabilita o butão se qualquer campo estiver inválido
-22.❌ Notificar o isFormValidStream habilita o butão se os campos estiverem válidos
+22.✅ Notificar o isFormValidStream habilita o butão se os campos estiverem válidos
+23.✅ Não notificar o isFormValidStream se o valor for igual ao último
 
-23.❌ Chamar o AddAccount com os valores corretos
-24.❌ Notificar o isLoadingStream como true antes de chamar o AddAccount e fale no fim do AddAccount
+24.❌ Chamar o AddAccount com os valores corretos
+25.❌ Notificar o isLoadingStream como true antes de chamar o AddAccount e fale no fim do AddAccount
 
-25.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: InvalidCredentials 
-26.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: UnexpectedError
+26.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: InvalidCredentials 
+27.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: UnexpectedError
 
-27.❌ Gravar o Account no cache em caso de sucesso
-28.❌ Notificar o mainErrorStream caso o SaveCurrentAccount retorne erro
-29.❌ Levar o usuário pra tela de Inicial em caso de sucesso
-30.❌ Levar o usuário pra tela de Suporte
-31.❌ Levar o usuário pra tela de Suporte várias vezes seguidas
+28.❌ Gravar o Account no cache em caso de sucesso
+29.❌ Notificar o mainErrorStream caso o SaveCurrentAccount retorne erro
+30.❌ Levar o usuário pra tela de Inicial em caso de sucesso
+31.❌ Levar o usuário pra tela de Suporte
+32.❌ Levar o usuário pra tela de Suporte várias vezes seguidas

@@ -182,4 +182,17 @@ void main() {
     sut.validatePassword(password);
     sut.validatePasswordConfirmation(password);
   });
+
+  test('22,23 - Should call isFormValidStream enable form button if all fields are valid', () async {
+    expectLater(sut.isFormValidStream, emitsInOrder([false, true]));
+
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(password);
+    sut.validateName(name);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validatePasswordConfirmation(password);
+  });
 } 
