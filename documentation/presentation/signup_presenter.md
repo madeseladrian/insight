@@ -30,7 +30,7 @@
 23.✅ Não notificar o isFormValidStream se o valor for igual ao último
 
 24.✅ Chamar o AddAccount com os valores corretos
-25.❌ Notificar o isLoadingStream como true antes de chamar o AddAccount e fale no fim do AddAccount
+25.✅ Notificar o isLoadingStream como true antes de chamar o AddAccount e fale no fim do AddAccount
 
 26.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: InvalidCredentials 
 27.❌ Notificar o mainErrorStream caso o AddAccount retorne erro: UnexpectedError

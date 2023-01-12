@@ -9,7 +9,7 @@ import '../helpers/helpers.dart';
 import '../mixins/mixins.dart';
 
 class GetxSignUpPresenter extends GetxController 
-with FormManager {
+with LoadingManager, FormManager, UIErrorManager {
   final AddAccount addAccount;
   final Validation validation;
 
@@ -84,6 +84,8 @@ with FormManager {
   }
 
   Future<void> signUp() async {
+    mainError = null;
+    isLoading = true;
     await addAccount.add(params: AddAccountParams(
         name: _name,
         email: _email,
