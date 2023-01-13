@@ -146,27 +146,7 @@ void main() {
     verify(() => presenter.auth()).called(1);
   });
 
-  testWidgets('14 - Should present loading', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    presenter.emitLoading();
-    await tester.pump();
-
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
-
-  testWidgets('15 - Should hide loading', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    presenter.emitLoading();
-    await tester.pump();
-    presenter.emitLoading(false);
-    await tester.pump();
-
-    expect(find.byType(CircularProgressIndicator), findsNothing);
-  });
-
-  testWidgets('16 - Should present error message if authentication fails', (WidgetTester tester) async {
+  testWidgets('14 - Should present error message if authentication fails', (WidgetTester tester) async {
     await loadPage(tester);
     
     presenter.emitMainError(UIError.invalidCredentials);
@@ -175,7 +155,7 @@ void main() {
     expect(find.text('Credenciais inválidas.'), findsOneWidget);
   });
 
-  testWidgets('17 - Should present error message if authentication throws', (WidgetTester tester) async {
+  testWidgets('15 - Should present error message if authentication throws', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitMainError(UIError.unexpected);
@@ -184,7 +164,7 @@ void main() {
     expect(find.text('Algo errado aconteceu. Tente novamente em breve.'), findsOneWidget);
   });
 
-  testWidgets('18 - Should change page', (WidgetTester tester) async {
+  testWidgets('16 - Should change page', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitNavigateTo('any_route');
@@ -194,7 +174,7 @@ void main() {
     expect(find.text('fake page'), findsOneWidget);
   });
 
-  testWidgets('19 - Should not change page', (WidgetTester tester) async {
+  testWidgets('17 - Should not change page', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitNavigateTo('');
@@ -202,7 +182,7 @@ void main() {
     expect(Get.currentRoute, '/login');
   });
 
-  testWidgets('20 - Should call add account on click text button in header', (WidgetTester tester) async {
+  testWidgets('18 - Should call add account on click text button in header', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();
@@ -214,7 +194,7 @@ void main() {
     verify(() => presenter.goToSignUp()).called(1);
   });
 
-  testWidgets('21 - Should call recoverPassword on click', (WidgetTester tester) async {
+  testWidgets('19 - Should call recoverPassword on click', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();
@@ -226,7 +206,7 @@ void main() {
     verify(() => presenter.recoverPassword()).called(1);
   });
 
-  testWidgets('22 - Should call support on click text button in the body', (WidgetTester tester) async {
+  testWidgets('20 - Should call support on click text button in the body', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();

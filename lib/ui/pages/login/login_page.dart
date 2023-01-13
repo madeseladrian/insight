@@ -5,7 +5,7 @@ import '../../helpers/helpers.dart';
 import '../../mixins/mixins.dart';
 import 'login.dart';
 
-class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, UIErrorManager {
+class LoginPage extends StatelessWidget with NavigationManager, UIErrorManager {
   final LoginPresenter presenter;
 
   const LoginPage({super.key, required this.presenter});
@@ -20,7 +20,6 @@ class LoginPage extends StatelessWidget with LoadingManager, NavigationManager, 
         backgroundColor: Colors.transparent,
         body: Builder(
           builder: (context) {
-            handleLoading(context, presenter.isLoadingStream);
             handleMainError(context, presenter.mainErrorStream);
             handleNavigation(presenter.navigateToStream);
 

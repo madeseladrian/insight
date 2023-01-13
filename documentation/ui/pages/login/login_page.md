@@ -14,12 +14,10 @@
 11.✅ Desabilitar o botão de fazer login se algum campo for inválido
 12.✅ Habilitar o botão de fazer login se todos os campos forem válidos
 13.✅ Chamar o método de autenticar
-14.✅ Exibir loading no início da ação de login
-15.✅ Esconder loading no fim da ação de login
-16.✅ Exibir mensagem de erro caso o login falhe
-17.✅ Exibir mensagem de erro caso o login apresente algum error inesperado
-18.✅ Garantir que para qualquer rota selecionada, muda-se de página
-19.✅ Ficar na mesma página, caso a rota esteja errada
-20.✅ Chamar o método de goToSignUp ao clicar no link in header
-21.✅ Chamar o método de recuperar senha ao clicar no link
-22.✅ Chamar o método de suporte ao clicar no link in body
+15.✅ Exibir mensagem de erro caso o login falhe
+16.✅ Exibir mensagem de erro caso o login apresente algum error inesperado
+17.✅ Garantir que para qualquer rota selecionada, muda-se de página
+18.✅ Ficar na mesma página, caso a rota esteja errada
+19.✅ Chamar o método de goToSignUp ao clicar no link in header
+20.✅ Chamar o método de recuperar senha ao clicar no link
+21.✅ Chamar o método de suporte ao clicar no link in body

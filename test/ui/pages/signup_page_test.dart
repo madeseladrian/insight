@@ -226,27 +226,7 @@ void main() {
     verify(() => presenter.signUp()).called(1);
   });
 
-  testWidgets('23 - Should present loading', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    presenter.emitLoading();
-    await tester.pump();
-
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
-
-  testWidgets('24 - Should hide loading', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    presenter.emitLoading();
-    await tester.pump();
-    presenter.emitLoading(false);
-    await tester.pump();
-
-    expect(find.byType(CircularProgressIndicator), findsNothing);
-  });
-
-  testWidgets('25 - Should present error message if add account fails', (WidgetTester tester) async {
+  testWidgets('23 - Should present error message if add account fails', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.showKeyboard(find.byKey(const Key('passwordConfirmation-input-signup')));
@@ -264,7 +244,7 @@ void main() {
     expect(find.text('Credenciais inválidas.'), findsOneWidget);
   });
 
-  testWidgets('26 - Should present error message if add account throws', (WidgetTester tester) async {
+  testWidgets('24 - Should present error message if add account throws', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.showKeyboard(find.byKey(const Key('passwordConfirmation-input-signup')));
@@ -282,7 +262,7 @@ void main() {
     expect(find.text('O email já está em uso.'), findsOneWidget);
   });
 
-  testWidgets('27 - Should change page', (WidgetTester tester) async {
+  testWidgets('25 - Should change page', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitNavigateTo('any_route');
@@ -292,7 +272,7 @@ void main() {
     expect(find.text('fake page'), findsOneWidget);
   });
 
-  testWidgets('28 - Should not change page', (WidgetTester tester) async {
+  testWidgets('26 - Should not change page', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitNavigateTo('');
@@ -304,7 +284,7 @@ void main() {
     expect(currentRoute, '/signup');
   });
 
-  testWidgets('29 - Should call goToLogin on link click', (WidgetTester tester) async {
+  testWidgets('27 - Should call goToLogin on link click', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();
@@ -316,7 +296,7 @@ void main() {
     verify(() => presenter.goToLogin()).called(1);
   });
 
-  testWidgets('30 - Should call support on click text button in the body', (WidgetTester tester) async {
+  testWidgets('28 - Should call support on click text button in the body', (WidgetTester tester) async {
     await loadPage(tester);
 
     await tester.pump();

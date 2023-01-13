@@ -11,7 +11,6 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   final mainErrorController = StreamController<UIError?>();
   final navigateToController = StreamController<String?>();
   final isFormValidController = StreamController<bool>();
-  final isLoadingController = StreamController<bool>();
 
   LoginPresenterSpy() {
     when(() => auth()).thenAnswer((_) async => _);
@@ -20,7 +19,6 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
     when(() => mainErrorStream).thenAnswer((_) => mainErrorController.stream);
     when(() => navigateToStream).thenAnswer((_) => navigateToController.stream);
     when(() => isFormValidStream).thenAnswer((_) => isFormValidController.stream);
-    when(() => isLoadingStream).thenAnswer((_) => isLoadingController.stream);
   } 
 
   void emitEmailError(UIError error) => emailErrorController.add(error);
@@ -29,7 +27,6 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
   void emitPasswordValid() => passwordErrorController.add(null);
   void emitFormError() => isFormValidController.add(false);
   void emitFormValid() => isFormValidController.add(true);
-  void emitLoading([bool show = true]) => isLoadingController.add(show);
   void emitMainError(UIError error) => mainErrorController.add(error);
   void emitNavigateTo(String route) => navigateToController.add(route);
 
@@ -40,6 +37,5 @@ class LoginPresenterSpy extends Mock implements LoginPresenter {
     mainErrorController.close();
     navigateToController.close();
     isFormValidController.close();
-    isLoadingController.close();
   }
 }

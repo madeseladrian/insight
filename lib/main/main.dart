@@ -21,11 +21,12 @@ class App extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     
     return GetMaterialApp(
-      title: 'Ignis',
+      title: 'Insight',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
-      initialRoute: '/login',
+      initialRoute: '/',
       getPages: [
+        GetPage(name: '/', page: makeSplashPage),
         GetPage(name: '/login', page: makeLoginPage),
         GetPage(name: '/signup', page: makeSignUpPage),
         GetPage(name: '/initial', page: () => const Scaffold(body: Center(child: Text('Initial')))),
