@@ -17,6 +17,7 @@ import '../mocks/mocks.dart';
 void main() {
   late GetxSignUpPresenter sut;
   late AddAccountSpy addAccount;
+  late AuthenticationSpy authentication;
   late ValidationSpy validation;
   late SaveCurrentAccountSpy saveCurrentAccount;
   late String name;
@@ -32,10 +33,13 @@ void main() {
     passwordConfirmation = faker.internet.password();
     account = EntityFactory.makeAccount();
     addAccount = AddAccountSpy();
-    addAccount.mockAddAccount(account);
+    addAccount.mockAddAccount();
+    authentication = AuthenticationSpy();
+    authentication.mockAuthentication(account);
     validation = ValidationSpy();
     saveCurrentAccount = SaveCurrentAccountSpy();
     sut = GetxSignUpPresenter(
+      authentication: authentication,
       addAccount: addAccount,
       validation: validation,
       saveCurrentAccount: saveCurrentAccount
@@ -45,6 +49,7 @@ void main() {
   setUpAll(() {
     registerFallbackValue(ParamsFactory.makeAddAccount());
     registerFallbackValue(EntityFactory.makeAccount());
+    registerFallbackValue(ParamsFactory.makeAuthentication());
   });
 
   test('1 - Should call Validation with correct name', () async {
@@ -258,13 +263,53 @@ void main() {
     await sut.signUp();
   });
 
-  test('28 - Should call SaveCurrentAccount with correct value', () async {
+  test('28 - Should call Authentication with correct values', () async {
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    
+    await sut.signUp();
+
+    verify(() => authentication.auth(params:AuthenticationParams(
+      email: email, password: password
+    ))).called(1);
+  });
+
+  test('29 - Should emit correct events on Authentication success', () async {
+    expectLater(sut.isLoadingStream, emits(true));
+    expectLater(sut.mainErrorStream, emits(null));
+
+    await sut.signUp();
+  });
+
+  test('30 - Should emit correct events on InvalidCredentialsError', () async {
+    authentication.mockAuthenticationError(DomainError.invalidCredentials);
+    
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.invalidCredentials]));
+
+    await sut.signUp();
+  });
+
+  test('31 - Should emit correct events on UnexpectedError', () async {
+    authentication.mockAuthenticationError(DomainError.unexpected);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+    sut.validateEmail(email);
+    sut.validatePassword(password);
+
+    expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
+    expectLater(sut.mainErrorStream, emitsInOrder([null, UIError.unexpected]));
+
+    await sut.signUp();
+  });
+
+  test('32 - Should call SaveCurrentAccount with correct value', () async {
     await sut.signUp();
 
     verify(() => saveCurrentAccount.save(accountEntity: account)).called(1);
   });
 
-  test('29 - Should emit UnexpectedError if SaveCurrentAccount fails', () async {
+  test('33 - Should emit UnexpectedError if SaveCurrentAccount fails', () async {
     saveCurrentAccount.mockSaveError();
     
     expectLater(sut.isLoadingStream, emitsInOrder([true, false]));
@@ -273,19 +318,19 @@ void main() {
     await sut.signUp();
   });
 
-  test('30 - Should change page on success', () async {
+  test('34 - Should change page on success', () async {
     sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/initial')));
 
     await sut.signUp();
   });
 
-  test('31 - Should go to LoginPage on link click', () async {
+  test('35 - Should go to LoginPage on link click', () async {
     sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/login')));
 
     sut.goToLogin();
   });
 
-  test('32 - Should go to SupportPage on link click', () async {
+  test('36 - Should go to SupportPage on link click', () async {
     sut.navigateToStream.listen(expectAsync1((page) => expect(page, '/support')));
 
     sut.support();

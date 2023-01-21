@@ -5,6 +5,7 @@ import '../../factories.dart';
 SignUpPresenter makeGetxSignUpPresenter() {
   return GetxSignUpPresenter(
     addAccount: makeRemoteAddAccount(),
+    authentication: makeRemoteAuthentication(),
     validation: makeSignUpValidation(),
     saveCurrentAccount: makeLocalSaveCurrentAccount(),
   );

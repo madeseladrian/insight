@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       title: 'Insight',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
-      initialRoute: '/',
+      initialRoute: '/login',
       getPages: [
         GetPage(name: '/', page: makeSplashPage),
         GetPage(name: '/login', page: makeLoginPage),

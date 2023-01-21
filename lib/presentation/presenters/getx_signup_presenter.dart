@@ -15,6 +15,7 @@ class GetxSignUpPresenter extends GetxController
 with LoadingManager, FormManager, NavigationManager, UIErrorManager 
 implements SignUpPresenter {
   final AddAccount addAccount;
+  final Authentication authentication;
   final Validation validation;
   final SaveCurrentAccount saveCurrentAccount;
 
@@ -39,6 +40,7 @@ implements SignUpPresenter {
 
   GetxSignUpPresenter({
     required this.addAccount,
+    required this.authentication,
     required this.validation,
     required this.saveCurrentAccount
   });
@@ -102,19 +104,25 @@ implements SignUpPresenter {
     try {
       mainError = null;
       isLoading = true;
-      final accountEntity = await addAccount.add(params: AddAccountParams(
+      await addAccount.add(params: AddAccountParams(
           name: _name,
           email: _email,
           password: _password,
           passwordConfirmation: _passwordConfirmation
         )
       );
+      final accountEntity = await authentication.auth(params: AuthenticationParams(
+        email: _email, 
+        password: _password
+      ));
       await saveCurrentAccount.save(accountEntity: accountEntity);
       navigateTo = '/initial';
     } on DomainError catch (error) {
       isLoading = false;
       switch (error) {
         case DomainError.emailInUse: mainError = UIError.emailInUse; break;
+        case DomainError.invalidCredentials:
+          mainError = UIError.invalidCredentials; break; 
         default: mainError = UIError.unexpected; break;
       }
     } 

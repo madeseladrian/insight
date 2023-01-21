@@ -12,18 +12,24 @@ class HttpAdapter implements HttpClient {
 
   @override
   Future request({required String url, required String method, Map? body, Map? headers}) async {
+    final routeLogin = url.split('/').contains('login');
     final defaultHeaders = headers?.cast<String, String>() ?? {}..addAll({
-      'content-type': 'application/json',
+      'content-type': routeLogin 
+        ? 'application/x-www-form-urlencoded'
+        : 'application/json',
       'accept': 'application/json'
     });
-    final jsonBody = body != null ? jsonEncode(body) : null;
+    final defaultBody = body != null 
+      ? (routeLogin ? body : jsonEncode(body)) 
+      : null;
     var response = Response('', 500);
     try {
       if (method == 'post') {
+
         response = await client.post(
           Uri.parse(url), 
           headers: defaultHeaders,
-          body: jsonBody
+          body: defaultBody,
         );
       }
     } catch (error) {

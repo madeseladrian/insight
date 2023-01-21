@@ -45,37 +45,26 @@ void main() {
     ));
   });
 
-  test('3,4 - Should return an Account if HttpClient returns 200', () async {
-    final account = await sut.add(params: params);
-    expect(account.token, apiResult['access_token']);
-  });
-
-  test('5 - Should throw UnexpectedError if HttpClient returns 400', () async {
+  test('3 - Should throw UnexpectedError if HttpClient returns 400', () async {
     httpClient.mockRequestError(HttpError.badRequest);
     final future = sut.add(params: params);
     expect(future, throwsA(DomainError.unexpected));
   });
 
-  test('6 - Should throw EmailInUseError if HttpClient returns 403', () async {
+  test('4 - Should throw EmailInUseError if HttpClient returns 403', () async {
     httpClient.mockRequestError(HttpError.forbidden);
     final future = sut.add(params: params);
     expect(future, throwsA(DomainError.emailInUse));
   });
 
-  test('7 - Should throw UnexpectedError if HttpClient returns 404', () async {
+  test('5 - Should throw UnexpectedError if HttpClient returns 404', () async {
     httpClient.mockRequestError(HttpError.notFound);
     final future = sut.add(params: params);
     expect(future, throwsA(DomainError.unexpected));
   });
 
-  test('8 - Should throw UnexpectedError if HttpClient returns 500', () async {
+  test('6 - Should throw UnexpectedError if HttpClient returns 500', () async {
     httpClient.mockRequestError(HttpError.serverError);
-    final future = sut.add(params: params);
-    expect(future, throwsA(DomainError.unexpected));
-  });
-
-  test('9 - Should throw UnexpectedError if HttpClient returns 200 with invalid data', () async {
-    httpClient.mockRequest({'invalid_key': 'invalid_value'});
     final future = sut.add(params: params);
     expect(future, throwsA(DomainError.unexpected));
   });
