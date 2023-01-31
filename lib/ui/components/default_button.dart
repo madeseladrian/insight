@@ -4,7 +4,7 @@ import 'package:insight/ui/components/components.dart';
 
 class DefaultButton extends StatelessWidget {
   final String nameButton;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const DefaultButton({
     required this.nameButton,

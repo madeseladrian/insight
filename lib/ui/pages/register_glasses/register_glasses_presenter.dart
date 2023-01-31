@@ -3,7 +3,7 @@ abstract class RegisterGlassesPresenter {
 
   void getCamera();
   void getGalery();
-  void uploadPhotos();
+  Future<void> uploadPhotos();
 
   void dispose();
 }
