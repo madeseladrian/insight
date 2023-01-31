@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import '../entities/entities.dart';
+
 abstract class AddImage {
-  Future<void> addImage({required File image});
+  Future<ImageEntity> addImage({required File image});
 }

@@ -29,7 +29,7 @@ class App extends StatelessWidget {
         GetPage(name: '/', page: makeSplashPage),
         GetPage(name: '/login', page: makeLoginPage),
         GetPage(name: '/signup', page: makeSignUpPage),
-        GetPage(name: '/glasses', page: () => const Scaffold(body: Center(child: Text('Glasses')))),
+        // GetPage(name: '/glasses', page: () => const RegisterGlassesPage()),
         GetPage(name: '/initial', page: makeInitialPage),
         GetPage(name: '/support', page: () => const Scaffold(body: Center(child: Text('Support')))),
         GetPage(name: '/camera', page: () => const Scaffold(body: Center(child: Text('Camera')))),

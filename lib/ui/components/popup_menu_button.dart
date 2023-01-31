@@ -35,6 +35,7 @@ class PopUpMenuButton extends StatelessWidget {
     }
 
     return PopupMenuButton<String>(
+      icon: const Icon(Icons.menu, color: Colors.white),
       color: Colors.white,
       onSelected: escolhaMenuItem,           // Define o método selecionado pelo usuário
       itemBuilder: (context){                //'context' constroe os itens que vão ser exibidos
