@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
 
 import 'package:insight/ui/pages/pages.dart';
 import 'package:mocktail/mocktail.dart';
@@ -32,5 +33,15 @@ void main() {
     await tester.pump();
 
     verify(() => presenter.goToCamera()).called(1);
+  });
+
+  testWidgets('3 - Should change page', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitNavigateTo('any_route');
+    await tester.pumpAndSettle();
+
+    expect(Get.currentRoute, 'any_route');
+    expect(find.text('fake page'), findsOneWidget);
   });
 }
