@@ -68,4 +68,10 @@ void main() {
     final future = sut.addImage(image: image); 
     expect(future, throwsA(DomainError.unexpected));
   });
+
+  test('9 - Should throw UnexpectedError if HttpClient returns 200 with invalid data', () async {
+    httpClient.mockRequest({'invalid_key': 'invalid_value'});
+    final future = sut.addImage(image: image); 
+    expect(future, throwsA(DomainError.unexpected));
+  });
 }
