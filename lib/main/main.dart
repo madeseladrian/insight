@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
-import 'package:insight/ui/pages/pages.dart';
 
 import '../ui/components/components.dart';
 import '../ui/helpers/helpers.dart';
@@ -31,8 +30,9 @@ class App extends StatelessWidget {
         GetPage(name: '/login', page: makeLoginPage),
         GetPage(name: '/signup', page: makeSignUpPage),
         GetPage(name: '/glasses', page: () => const Scaffold(body: Center(child: Text('Glasses')))),
-        GetPage(name: '/initial', page: () => const InitialPage()),
+        GetPage(name: '/initial', page: makeInitialPage),
         GetPage(name: '/support', page: () => const Scaffold(body: Center(child: Text('Support')))),
+        GetPage(name: '/camera', page: () => const Scaffold(body: Center(child: Text('Camera')))),
         GetPage(name: '/recoverPassword', page: () => const Scaffold(body: Center(child: Text('Recover Password')))),
       ]
     );
