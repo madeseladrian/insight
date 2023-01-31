@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
+import 'package:insight/ui/pages/pages.dart';
 
 import '../ui/components/components.dart';
 import '../ui/helpers/helpers.dart';
@@ -24,12 +25,13 @@ class App extends StatelessWidget {
       title: 'Insight',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
-      initialRoute: '/login',
+      initialRoute: '/initial',
       getPages: [
         GetPage(name: '/', page: makeSplashPage),
         GetPage(name: '/login', page: makeLoginPage),
         GetPage(name: '/signup', page: makeSignUpPage),
-        GetPage(name: '/initial', page: () => const Scaffold(body: Center(child: Text('Initial')))),
+        GetPage(name: '/glasses', page: () => const Scaffold(body: Center(child: Text('Glasses')))),
+        GetPage(name: '/initial', page: () => const InitialPage()),
         GetPage(name: '/support', page: () => const Scaffold(body: Center(child: Text('Support')))),
         GetPage(name: '/recoverPassword', page: () => const Scaffold(body: Center(child: Text('Recover Password')))),
       ]
