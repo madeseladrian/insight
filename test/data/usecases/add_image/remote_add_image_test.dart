@@ -56,4 +56,10 @@ void main() {
     final future = sut.addImage(image: image); 
     expect(future, throwsA(DomainError.invalidCredentials));
   });
+
+  test('7 - Should throw UnexpectedError if HttpClient returns 404', () async {
+    httpClient.mockRequestError(HttpError.notFound);
+    final future = sut.addImage(image: image); 
+    expect(future, throwsA(DomainError.unexpected));
+  });
 }
