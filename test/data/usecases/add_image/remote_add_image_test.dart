@@ -34,4 +34,10 @@ void main() {
       body: {"image": image}
     ));
   });
+
+  test('4 - Should return an ImageEntity if HttpClient returns 200', () async {
+    final accountEntity = await sut.addImage(image: image);
+    expect(accountEntity.glassesId, apiResult['glasses_id']);
+    expect(accountEntity.urlImage, apiResult['url_image']);
+  });
 }
