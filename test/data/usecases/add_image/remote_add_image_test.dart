@@ -4,7 +4,11 @@ import 'package:faker/faker.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:insight/domain/errors/errors.dart';
+
+import 'package:insight/data/errors/errors.dart';
 import 'package:insight/data/usecases/usecases.dart';
+
 import '../../mocks/mocks.dart';
 
 void main() {
@@ -39,5 +43,11 @@ void main() {
     final accountEntity = await sut.addImage(image: image);
     expect(accountEntity.glassesId, apiResult['glasses_id']);
     expect(accountEntity.urlImage, apiResult['url_image']);
+  });
+
+  test('5 - Should throw UnexpectedError if HttpClient returns 400', () async {
+    httpClient.mockRequestError(HttpError.badRequest);
+    final future = sut.addImage(image: image);
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
