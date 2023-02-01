@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import 'package:insight/ui/components/components.dart';
 import 'package:insight/ui/pages/pages.dart';
@@ -32,5 +33,16 @@ void main() {
 
     final buttonGallery = tester.widget<ButtonRegister>(find.byKey(const Key('gallery')));
     expect(buttonGallery.onPressed, isNotNull);
+  });
+
+  testWidgets('3 - Should call getCamera on form submit', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final button = find.byKey(const Key('camera'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.getCamera()).called(1);
   });
 }

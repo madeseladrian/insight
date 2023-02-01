@@ -18,6 +18,7 @@ class RegisterGlassesPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Builder(
           builder: (context) {
+
             return Container(
               decoration: const BoxDecoration(color: Colors.white),
               child: Column(
@@ -27,7 +28,7 @@ class RegisterGlassesPage extends StatelessWidget {
                   DefaultButton(
                     key: Key('register glasses'),
                     nameButton: 'Cadastrar Óculos', 
-                    onPressed: null
+                    onPressed:  null
                   )
                 ],
               ),
