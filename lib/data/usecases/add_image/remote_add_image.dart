@@ -15,7 +15,7 @@ class RemoteAddImage implements AddImage {
   RemoteAddImage({required this.url, required this.httpClient});
 
   @override
-  Future<ImageEntity> addImage({required File image}) async {
+  Future<ImageEntity> add({required File image}) async {
     final body = {'image': image};
     try {
       final httpResponse = await httpClient.request(url: url, method: 'post', body: body);

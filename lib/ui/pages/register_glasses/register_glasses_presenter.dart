@@ -1,12 +1,14 @@
 import 'dart:io';
 
+import '../../../domain/entities/entities.dart';
+
 abstract class RegisterGlassesPresenter {
   Stream<bool> get isFormValidStream;
   Stream<File?> get imageStream;
 
   void getCamera();
   void getGallery();
-  Future<void> uploadPhotos();
+  Future<ImageEntity> uploadPhotos();
 
   void dispose();
 }

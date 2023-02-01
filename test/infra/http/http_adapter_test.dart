@@ -5,16 +5,19 @@ import 'package:test/test.dart';
 import 'package:insight/data/errors/errors.dart';
 import 'package:insight/infra/http/http.dart';
 
+import '../../domain/mocks/mocks.dart';
 import '../mocks/mocks.dart';
 
 void main() {
   late String url;
   late ClientSpy client;
+  late LoadCurrentAccountSpy loadCurrentAccount;
   late HttpAdapter sut;
 
   setUp(() {
     client = ClientSpy();
-    sut = HttpAdapter(client: client);
+    loadCurrentAccount = LoadCurrentAccountSpy();
+    sut = HttpAdapter(client: client, loadCurrentAccount: loadCurrentAccount);
   });
 
   setUpAll(() {

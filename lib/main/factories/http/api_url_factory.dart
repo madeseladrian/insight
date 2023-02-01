@@ -1,1 +1,1 @@
-String makeApiUrl(String path) => 'http://34.95.179.161:8000/$path/';
+String makeApiUrl(String path) => 'http://35.247.209.92:8000/$path/';

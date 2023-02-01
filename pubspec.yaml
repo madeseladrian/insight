@@ -15,8 +15,9 @@ dependencies:
   cupertino_icons: 
   equatable: 
   flutter_secure_storage: ^7.0.1
-  http:
   get:
+  http:
+  image_picker: 
 
 dev_dependencies:
   flutter_test:
