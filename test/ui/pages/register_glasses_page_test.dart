@@ -57,7 +57,27 @@ void main() {
     verify(() => presenter.getGallery()).called(1);
   });
 
-  testWidgets('5 - Should call uploadPhotos on form submit', (WidgetTester tester) async {
+  testWidgets('5 - Should disable button if form is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitFormError();
+    await tester.pump();
+
+    final button = tester.widget<DefaultButton>(find.byKey(const Key('register glasses')));
+    expect(button.onPressed, null);
+  });
+
+  testWidgets('6 - Should enable button if form is valid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitFormValid();
+    await tester.pump();
+
+    final button = tester.widget<DefaultButton>(find.byKey(const Key('register glasses')));
+    expect(button.onPressed, isNotNull);
+  });
+
+  testWidgets('7 - Should call uploadPhotos on form submit', (WidgetTester tester) async {
     await loadPage(tester);
 
     presenter.emitFormValid();
@@ -69,15 +89,5 @@ void main() {
     await tester.pump();
 
     verify(() => presenter.uploadPhotos()).called(1);
-  });
-
-  testWidgets('6 - Should disable button if form is invalid', (WidgetTester tester) async {
-    await loadPage(tester);
-
-    presenter.emitFormError();
-    await tester.pump();
-
-    final button = tester.widget<DefaultButton>(find.byKey(const Key('register glasses')));
-    expect(button.onPressed, null);
   });
 }
