@@ -70,4 +70,14 @@ void main() {
 
     verify(() => presenter.uploadPhotos()).called(1);
   });
+
+  testWidgets('6 - Should disable button if form is invalid', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitFormError();
+    await tester.pump();
+
+    final button = tester.widget<DefaultButton>(find.byKey(const Key('register glasses')));
+    expect(button.onPressed, null);
+  });
 }
