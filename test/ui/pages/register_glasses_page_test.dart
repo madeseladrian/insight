@@ -45,4 +45,15 @@ void main() {
 
     verify(() => presenter.getCamera()).called(1);
   });
+
+  testWidgets('4 - Should call getGallery on form submit', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final button = find.byKey(const Key('gallery'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.getGallery()).called(1);
+  });
 }

@@ -21,7 +21,7 @@ class RowButtons extends StatelessWidget {
         ButtonRegister(
           key: const Key('gallery'),
           name: 'Galeria',
-          onPressed: presenter.getGalery,
+          onPressed: presenter.getGallery,
         )
       ],
     );

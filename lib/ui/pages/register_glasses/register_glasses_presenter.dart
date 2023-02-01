@@ -2,7 +2,7 @@ abstract class RegisterGlassesPresenter {
   Stream<dynamic> get imageStream;
 
   void getCamera();
-  void getGalery();
+  void getGallery();
   Future<void> uploadPhotos();
 
   void dispose();
