@@ -13,11 +13,13 @@ class RowButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ButtonRegister(
+          key: const Key('camera'),
           name: 'Câmera',
           onPressed: presenter.getCamera,
         ),
         const SizedBox(width: 8.0),
         ButtonRegister(
+          key: const Key('gallery'),
           name: 'Galeria',
           onPressed: presenter.getGalery,
         )

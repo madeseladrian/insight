@@ -23,4 +23,14 @@ void main() {
     expect(button.onPressed, null);
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
+
+  testWidgets('2 - Should upload photos with correct initial state', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    final buttonCamera = tester.widget<ButtonRegister>(find.byKey(const Key('camera')));
+    expect(buttonCamera.onPressed, isNotNull);
+
+    final buttonGallery = tester.widget<ButtonRegister>(find.byKey(const Key('gallery')));
+    expect(buttonGallery.onPressed, isNotNull);
+  });
 }
