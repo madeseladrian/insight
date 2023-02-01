@@ -7,9 +7,9 @@ class DefaultButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const DefaultButton({
+    super.key,
     required this.nameButton,
-    required this.onPressed,
-    super.key
+    required this.onPressed
   });
 
   @override

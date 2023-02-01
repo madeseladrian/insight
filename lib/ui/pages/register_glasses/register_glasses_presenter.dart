@@ -1,5 +1,8 @@
+import 'dart:io';
+
 abstract class RegisterGlassesPresenter {
-  Stream<dynamic> get imageStream;
+  Stream<bool> get isFormValidStream;
+  Stream<File?> get imageStream;
 
   void getCamera();
   void getGallery();

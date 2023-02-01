@@ -56,4 +56,18 @@ void main() {
 
     verify(() => presenter.getGallery()).called(1);
   });
+
+  testWidgets('5 - Should call uploadPhotos on form submit', (WidgetTester tester) async {
+    await loadPage(tester);
+
+    presenter.emitFormValid();
+
+    await tester.pump();
+    final button = find.byKey(const Key('register glasses'));
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pump();
+
+    verify(() => presenter.uploadPhotos()).called(1);
+  });
 }

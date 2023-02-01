@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +11,7 @@ class UploadPhotos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final presenter = Get.find<RegisterGlassesPresenter>();
-    return StreamBuilder<dynamic>(
+    return StreamBuilder<File?>(
       stream: presenter.imageStream,
       builder: (context, snapshot) {
         return Padding(
@@ -41,10 +43,10 @@ class UploadPhotos extends StatelessWidget {
                 ),
                 RowButtons()
               ],
-            ) : Column(
+            ) :  Column(
               children: [
                 Image.file(
-                  snapshot.data,
+                  snapshot.data!,
                   fit: BoxFit.contain,
                 ),
                 const RowButtons()
